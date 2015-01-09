@@ -28,7 +28,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+//		echo $this->Html->css('cake.generic');
+
+        // jQuery CDN
+        echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
+
+        // Twitter Bootstrap 3.0 CDN
+        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
+        echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
+
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
