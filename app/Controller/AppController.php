@@ -36,7 +36,8 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
-            'logoutRedirect' => array('controller' => 'posts', 'action' => 'index', 'home')
+            'logoutRedirect' => array('controller' => 'posts', 'action' => 'index', 'home'),
+             'authorize' => array('Controller') // この行を追加しました
         )
     );
 
@@ -49,8 +50,15 @@ class AppController extends Controller {
 
      public function beforeFilter() {
             $this->Auth->allow('index', 'view');
-        }
+     }
 
-
+     public function isAuthorized($user) {
+            if (isset($user['role']) && $user['role'] === 'admin') {
+                return true;
+            }
+        
+            // デフォルトは拒否
+            return false;
+     } 
 
 }
