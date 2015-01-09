@@ -31,7 +31,14 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = array('DebugKit.Toolbar');
+    public $components = array(
+        'DebugKit.Toolbar',
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
+            'logoutRedirect' => array('controller' => 'posts', 'action' => 'index', 'home')
+        )
+    );
 
      public $helpers = array(
             'Session',
@@ -39,4 +46,11 @@ class AppController extends Controller {
             'Form' => array('className' => 'BoostCake.BoostCakeForm'),
             'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
         );
+
+     public function beforeFilter() {
+            $this->Auth->allow('index', 'view');
+        }
+
+
+
 }
