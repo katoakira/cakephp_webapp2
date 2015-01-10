@@ -32,6 +32,11 @@ class PostsController extends AppController {
         $this->set('categories', $this->Category->find('all'));
     }
 
+    public function img_test() {
+        $this->Img_user->save($this->request->data);
+    }
+
+
     public function view($id = null) {
            if (!$id) {
                throw new NotFoundException(__('Invalid post'));
