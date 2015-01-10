@@ -3,19 +3,25 @@ class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
 
     public function isAuthorized($user) {
-        // 登録済ユーザーは投稿できる
-        if ($this->action === 'add') {
-            return true;
-        }
-    
-        // 投稿のオーナーは編集や削除ができる
-        if (in_array($this->action, array('edit', 'delete'))) {
-            $postId = (int) $this->request->params['pass'][0];
+//        // 登録済ユーザーは投稿できる
+//        if ($this->action === 'add') {
+//            return true;
+//        }
+//    
+//        // 投稿のオーナーは編集や削除ができる
+//        if (in_array($this->action, array('edit', 'delete'))) {
+//            $postId = (int) $this->request->params['pass'][0];
+//            if ($this->Post->isOwnedBy($postId, $user['id'])) {
+//                return true;
+//            }
+//        }
+        if (in_array($this->action, array('edit', 'delete', 'add'))) {
+            $postId = (int) $this->request->param['pass'][0];
             if ($this->Post->isOwnedBy($postId, $user['id'])) {
                 return true;
             }
         }
-    
+
         return parent::isAuthorized($user);
     } 
 
@@ -38,10 +44,12 @@ class PostsController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); //Added this line
+            $this->Post->create();
             if ($this->Post->save($this->request->data)) {
-                $this->Session->setFlash(__('Your post has been saved.'));
-                $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash(__('出品しました'));
+                return $this->redirect(array('action' => 'index'));
             }
+            $this->Session->setFlash(__('出品できません'));
         } 
     }
 
@@ -58,10 +66,10 @@ class PostsController extends AppController {
        if ($this->request->is(array('post', 'put'))) {
            $this->Post->id = $id;
            if ($this->Post->save($this->request->data)) {
-               $this->Session->setFlash(__('Your post has been updated.'));
+               $this->Session->setFlash(__('編集しました'));
                return $this->redirect(array('action' => 'index'));
            }
-           $this->Session->setFlash(__('Unable to update your post.'));
+           $this->Session->setFlash(__('編集できません'));
        }
 
        if (!$this->request->data) {
