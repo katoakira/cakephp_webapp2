@@ -33,6 +33,9 @@ array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
     <?php unset($post); ?>
 </table>
 -->
+
+
+
 <!-- 商品一覧TOP -->
 <h1>TOP</h1>
 <?php
@@ -42,6 +45,8 @@ array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
         array('class' => 'btn btn-primary', 'style' => 'margin-bottom: 20px; margin-left: 10px')
     );
 ?>
+
+<table class="table table-striped table-bordered table-hover table-condensed">
 <table class="table table-striped table-borederd table-hover table-condensed">
     <tr>
         <th>Title</th>

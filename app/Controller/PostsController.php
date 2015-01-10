@@ -2,6 +2,8 @@
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
 
+    public $uses = array('User', 'Post', 'Category') ;
+
     public function isAuthorized($user) {
 //        // 登録済ユーザーは投稿できる
 //        if ($this->action === 'add') {
@@ -27,6 +29,7 @@ class PostsController extends AppController {
 
     public function index() {
         $this->set('posts', $this->Post->find('all'));
+        $this->set('categories', $this->Category->find('all'));
     }
 
     public function view($id = null) {
