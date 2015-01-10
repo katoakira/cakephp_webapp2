@@ -50,6 +50,8 @@ array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
     <li><?php echo $category['Category']['name']; ?></li>
 </ul>
 <?php endforeach; ?>
+
+<h2>商品一覧</h2>
 <table class="table table-striped table-borederd table-hover table-condensed">
     <tr>
         <th>Title</th>

@@ -1,38 +1,12 @@
 <?php
 App::uses('AppController', 'Controller');
-/**
- * Categories Controller
- *
- * @property Category $Category
- * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
- */
 class CategoriesController extends AppController {
-
-/**
- * Components
- *
- * @var array
- */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
 	public function index() {
-		$this->Category->recursive = 0;
-		$this->set('categories', $this->Paginator->paginate());
+   //    $this->set('category_posts', $this->)
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
@@ -41,11 +15,6 @@ class CategoriesController extends AppController {
 		$this->set('category', $this->Category->find('first', $options));
 	}
 
-/**
- * add method
- *
- * @return void
- */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Category->create();
@@ -58,13 +27,6 @@ class CategoriesController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function edit($id = null) {
 		if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
@@ -82,13 +44,6 @@ class CategoriesController extends AppController {
 		}
 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function delete($id = null) {
 		$this->Category->id = $id;
 		if (!$this->Category->exists()) {
