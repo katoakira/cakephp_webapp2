@@ -4,33 +4,23 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
     public $hasMany = array(
-        'Image' => array(
-            'className' => 'Attachment',
-            'foreignKey' => 'foreign_key',
-            'conditions' => array(
-                'Attachment.model' => 'User',
-            ),
-        ),
+        'Post' => array(
+            'className' => 'Post',
+            'forignKey' => 'user_id'
+        )
     ); 
 
     public $validate = array(
         'username' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'A username is required'
+                'message' => 'ユーザー名を入力してください'
             )
         ),
         'password' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
-        ),
-        'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('admin', 'author')),
-                'message' => 'Please enter a valid role',
-                'allowEmpty' => false
+                'message' => 'パスワードを入力してください'
             )
         )
     );

@@ -28,17 +28,18 @@ class PostsController extends AppController {
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
-        $this->set('post', $this->Post->findById(23));
     }
 
+
     public function categoryIndex($id = null) {
+
         if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
+            throw new NotFoundException(__('閲覧できません'));
         }
         $this->set($this->paginate());
         $category = $this->Category->findById($id);  
         if(!$category) {
-            throw new NotFoundException(__('Invalid post'));
+            throw new NotFoundException(__('閲覧できません'));
         }
 
         $this->set('category', $category);
@@ -47,12 +48,12 @@ class PostsController extends AppController {
 
     public function view($id = null) {
         if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
+            throw new NotFoundException(__('閲覧できません'));
         }
 
         $post = $this->Post->findById($id);
         if (!$post) {
-            throw new NotFoundException(__('Invalid post'));
+            throw new NotFoundException(__('閲覧できません'));
         }
 
         $this->set('post', $post);

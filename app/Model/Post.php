@@ -9,8 +9,8 @@
                          'big' => '200x200',
                          'small' => '120x120',
                          'thumb' => '80x80'
-                       )
-                  )
+                      )
+                 )
              )
          );
 
@@ -50,7 +50,13 @@
             'due_date' => array(
                 'required' => array(
                   'rule' => 'notEmpty',
-                  'message' => '締切日を入力してください'
+                  'message' => '掲載終了日時をを入力してください'
+                )
+            ),
+            'price' => array(
+                'required' => array(
+                    'rule' => 'notEmpty',
+                    'message' => '価格を入力してください'
                 )
             )
         );
