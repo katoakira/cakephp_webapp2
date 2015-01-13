@@ -8,7 +8,7 @@
     echo $this->Form->input('category_id', 
         array(
             'type' => 'select',
-            'options' => '',
+            'options' => $category,
             'label' => 'カテゴリ選択'
         )
     ); 

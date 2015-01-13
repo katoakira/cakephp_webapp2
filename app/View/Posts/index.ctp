@@ -1,5 +1,6 @@
 <!-- 商品一覧TOP -->
-<?php debug($category); ?>
+<?php debug($posts);
+      debug($user); ?>
 <h1>TOP</h1>
 <?php
     echo $this->Html->link(
@@ -53,9 +54,9 @@
             ?>
         </td>
         <td><?php echo h($post['Post']['name']); ?></td>
-        <td></td>
+        <td><?php echo h($post['Category']['name']); ?></td>
         <td><?php echo $post['Post']['due_date']; ?></td>
-        <td><?php echo $post['Post']['price']; ?></td>
+        <td>¥<?php echo $post['Post']['price']; ?></td>
         <td><?php echo $post['Post']['modified']; ?></td>
         <td><?php echo $this->Upload->uploadImage($post['Post'],'Post.img',array('style' => 'thumb')); ?></td>
         <td>

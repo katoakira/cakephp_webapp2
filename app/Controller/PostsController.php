@@ -1,15 +1,15 @@
 <?php 
 class PostsController extends AppController {
-    public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload', 'Paginator'); // 使用するヘルパーの指定
+    public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload', 'Paginator');
 
-    public $uses = array('Image', 'User', 'Post', 'Category'); // 使用するモデルの指定
+    public $uses = array('Image', 'User', 'Post', 'Category');
 
-    public $paginate = array( //Paginatorを使用 
-        'Post' => array( //Postモデルで
-            'order' => array( // 並び方は
-                'modified' => 'DESC' // 最終更新時間降順
+    public $paginate = array( 
+        'Post' => array(
+            'order' => array(
+                'modified' => 'DESC' 
             ),
-            'limit' => 30 // 30ページで
+            'limit' => 30
         )
     );
 
@@ -28,14 +28,6 @@ class PostsController extends AppController {
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
-        $category = $this->Category->find('list',
-                array(
-                    'field' => array(
-                        'Category.id', 'Category.name'
-                    )
-                )
-            );
-        $this->set('category', $category);
     }
 
     public function categoryIndex($id = null) {
@@ -49,6 +41,7 @@ class PostsController extends AppController {
         }
 
         $this->set('category', $category);
+
     }
 
     public function view($id = null) {
@@ -62,20 +55,22 @@ class PostsController extends AppController {
         }
 
         $this->set('post', $post);
+
     }
 
     public function add() {
+        $category = $this->Category->find('list',
+            array(
+                'field' => array(
+                    'Category.id', 'Category.name'
+                )
+            )
+        );
+        $this->set('category', $category); 
+
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); 
 
-            $category = $this->Category->find('list',
-                 array(
-                     'field' => array(
-                         'Category.id', 'Category.name'
-                     )
-                 )
-             );
-            $this->set('category', $category); 
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash(__('出品しました'));
@@ -83,40 +78,68 @@ class PostsController extends AppController {
             }
             $this->Session->setFlash(__('出品できません'));
         } 
+
     }
 
    public function edit($id = null) {
-       if (!$id) {
-           throw new NotFoundException(__('Invalid post'));
-       }
+       $category = $this->Category->find('list',
+            array(
+                'field' => array(
+                    'Category.id', 'Category.name'
+                )
+            )
+        );
+        $this->set('category', $category);
+ 
+        if (!$id) {
+            throw new NotFoundException(__('編集できません'));
+        }
+         
+        $post = $this->Post->findById($id);
+        if (!$post) {
+            throw new NotFoundException(__('編集できません'));
+        }
+        
+     //   if ($user['id'] !== $post['Post']['user_id']) {
+     //       $this->Session->setFlash(__('編集できません'));
+     //       return $this->redirect(array(
+     //           'controller' => 'posts',
+     //           'action' => 'index'
+     //           )
+     //       );   
+     //   }
+        $this->set('post', $post);
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Post->id = $id;
+            if ($this->Post->saveAll($this->request->data)) {
+                $this->Session->setFlash(__('編集しました'));
+                return $this->redirect(array(
+                    'controller' => 'posts',
+                    'action' => 'index'
+                    )
+                );
+            }
+            $this->Session->setFlash(__('編集できません'));
+        }
 
-       $post = $this->Post->findById($id);
-       if (!$post) {
-           throw new NotFoundException(__('Invalid post'));
-       }
-
-       if ($this->request->is(array('post', 'put'))) {
-           $this->Post->id = $id;
-           if ($this->Post->save($this->request->data)) {
-               $this->Session->setFlash(__('編集しました'));
-               return $this->redirect(array('action' => 'index'));
-           }
-           $this->Session->setFlash(__('編集できません'));
-       }
-
-       if (!$this->request->data) {
-           $this->request->data = $post;
-       }
+        if (!$this->request->data) {
+            $this->request->data = $post;
+        }
    }
 
     public function delete($id) {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
         }
+
     
         if ($this->Post->delete($id)) {
-            $this->Session->setFlash(__('The post with id: %s has been deleted.', h($id)));
-            return $this->redirect(array('action' => 'index'));
+            $this->Session->setFlash(__('削除しました'));
+            return $this->redirect(array(
+                'controller' => 'posts',
+                'action' => 'index'
+                )
+            );
         }
     }
 } 

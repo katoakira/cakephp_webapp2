@@ -21,15 +21,9 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-    <title>
-        CakePHP
-		<?php //echo $cakeDescription ?>:
-		<?ph p// echo $this->fetch('title'); ?>
-	</title>
+    <title>WebApplication</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-//		echo $this->Html->css('cake.generic');
 
         // jQuery CDN
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
@@ -48,14 +42,6 @@
 
 	<div id="container">
 		<div id="header">
-            <h1><?php // echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-             <?php
-//                if ($user) {
-//                    echo $this->Html->link('ログアウト', array('controller' => 'users', 'action' => 'logout'));
-//                } else {
-//                    echo $this->Html->link('ログイン', array('controller' => 'users', 'action' => 'login'));
-//                }
-?>
            <nav class="navbar navbar-fixed-top">
                 <div id="navbar-header">
                 <?php

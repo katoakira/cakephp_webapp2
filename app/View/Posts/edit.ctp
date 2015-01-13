@@ -1,3 +1,5 @@
+<?php debug($post);
+      debug($user);?>
 <h1>編集</h1>
 <?php
     echo $this->Form->create('Post', array('type' => 'file'));
@@ -7,7 +9,7 @@
     echo $this->Form->input('category_id',
         array(
             'type' => 'select',
-            'options' => '',
+            'options' => $category,
             'label' => 'カテゴリ選択'
         )
     );
@@ -15,7 +17,15 @@
     echo $this->Form->file('img');
     echo $this->Form->input('price');
     echo $this->Form->input('due_date');
-    echo $this->Form->submit('出品', array('action' => 'index'), array('class' => 'btn btn-primary'));
+    echo $this->Form->submit('編集',
+        array(
+           'controller' => 'posts',
+            'action' => 'index'
+        ),
+        array(
+            'class' => 'btn btn-primary'
+        )
+    );
 ?>
 </div>
 <div class="pageLink">
