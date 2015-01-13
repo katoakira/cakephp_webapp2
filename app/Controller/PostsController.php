@@ -28,6 +28,7 @@ class PostsController extends AppController {
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
+        $this->set('post', $this->Post->findById(23));
     }
 
     public function categoryIndex($id = null) {
@@ -94,20 +95,21 @@ class PostsController extends AppController {
         if (!$id) {
             throw new NotFoundException(__('編集できません'));
         }
-         
+
+        $user = $this->Auth->user(); 
         $post = $this->Post->findById($id);
         if (!$post) {
             throw new NotFoundException(__('編集できません'));
         }
         
-     //   if ($user['id'] !== $post['Post']['user_id']) {
-     //       $this->Session->setFlash(__('編集できません'));
-     //       return $this->redirect(array(
-     //           'controller' => 'posts',
-     //           'action' => 'index'
-     //           )
-     //       );   
-     //   }
+        if ($post['Post']['user_id'] !== $user['id']) {
+            $this->Session->setFlash(__('編集できません'));
+            return $this->redirect(array(
+                'controller' => 'posts',
+                'action' => 'index'
+                )
+            );   
+        }
         $this->set('post', $post);
         if ($this->request->is(array('post', 'put'))) {
             $this->Post->id = $id;
@@ -132,7 +134,17 @@ class PostsController extends AppController {
             throw new MethodNotAllowedException();
         }
 
-    
+        $user = $this->Auth->user();
+        $post = $this->Post->findById($id);
+        if ($post['Post']['user_id'] !== $user['id']) {
+            $this->Session->setFlash(__('編集できません'));
+            return $this->redirect(array(
+                'controller' => 'posts',
+                'action' => 'index'
+                )
+            );
+        }
+
         if ($this->Post->delete($id)) {
             $this->Session->setFlash(__('削除しました'));
             return $this->redirect(array(

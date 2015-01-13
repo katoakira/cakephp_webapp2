@@ -1,6 +1,6 @@
 <!-- 商品一覧TOP -->
-<?php debug($posts);
-      debug($user); ?>
+<?php debug($post['Post']['user_id']);
+      debug($user['id']); ?>
 <h1>TOP</h1>
 <?php
     echo $this->Html->link(
