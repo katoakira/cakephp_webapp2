@@ -14,24 +14,6 @@
              )
          );
 
-
-        //var $validate = array(  
-        //    'img' => array(  
-        ////○○キロバイト以下のファイルでアップロードしてください。  
-        //        'maxSize' => array(  
-        //            'rule' => array('attachmentMaxSize', 1048576),  
-        //            'message' => '1MB以下のファイルでアップロードしてください'  
-        //        ),  
-        ////○○キロバイト以上のファイルでアップロードしてください。(あまりにも小さいファイルはアップロードさせない)  
-        //        'minSize' => array(  
-        //            'rule' => array('attachmentMinSize', 1024),  
-        //            'message' => '1KB以上のファイルでアップロードしてください'  
-        //        )  
-        //    )  
-        // );  
-
-//         public $hasMany = array('Table_attachment');
-
          public $name = 'Post';
             
          public $belongsTo = array(
@@ -45,9 +27,6 @@
               )
           );
 
- //        public $hasAndBelongsToMany = array('Category');
-        
-         public $hasOne = array('Image');
 
          public $validate = array(
             'title' => array(

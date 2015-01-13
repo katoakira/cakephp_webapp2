@@ -14,18 +14,6 @@ class PostsController extends AppController {
     );
 
     public function isAuthorized($user) {
-//        // 登録済ユーザーは投稿できる
-//        if ($this->action === 'add') {
-//            return true;
-//        }
-//    
-//        // 投稿のオーナーは編集や削除ができる
-//        if (in_array($this->action, array('edit', 'delete'))) {
-//            $postId = (int) $this->request->params['pass'][0];
-//            if ($this->Post->isOwnedBy($postId, $user['id'])) {
-//                return true;
-//            }
-//        }
         if (in_array($this->action, array('edit', 'delete', 'add'))) {
             $postId = (int) $this->request->param['pass'][0];
             if ($this->Post->isOwnedBy($postId, $user['id'])) {
@@ -36,40 +24,61 @@ class PostsController extends AppController {
         return parent::isAuthorized($user);
     } 
 
-    public function beforeRender() {
-    //    $this->set('categoryList', $this->Post->Category->find('list'));
-    }
-
     public function index() {
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
+        $category = $this->Category->find('list',
+                array(
+                    'field' => array(
+                        'Category.id', 'Category.name'
+                    )
+                )
+            );
+        $this->set('category', $category);
     }
 
-    public function img_test() {
-        $this->Img_user->save($this->request->data);
-    }
+    public function categoryIndex($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+        $this->set($this->paginate());
+        $category = $this->Category->findById($id);  
+        if(!$category) {
+            throw new NotFoundException(__('Invalid post'));
+        }
 
+        $this->set('category', $category);
+    }
 
     public function view($id = null) {
-           if (!$id) {
-               throw new NotFoundException(__('Invalid post'));
-           }
+        if (!$id) {
+            throw new NotFoundException(__('Invalid post'));
+        }
 
-           $post = $this->Post->findById($id);
-           if (!$post) {
-               throw new NotFoundException(__('Invalid post'));
-           }
-           $this->set('post', $post);
+        $post = $this->Post->findById($id);
+        if (!$post) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+
+        $this->set('post', $post);
     }
 
     public function add() {
         if ($this->request->is('post')) {
-            $this->request->data['Post']['user_id'] = $this->Auth->user('id'); //Added this line
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id'); 
+
+            $category = $this->Category->find('list',
+                 array(
+                     'field' => array(
+                         'Category.id', 'Category.name'
+                     )
+                 )
+             );
+            $this->set('category', $category); 
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash(__('出品しました'));
-                move_upload_file($image['img']);
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('出品できません'));

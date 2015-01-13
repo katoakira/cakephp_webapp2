@@ -1,4 +1,5 @@
 <!-- 商品一覧TOP -->
+<?php debug($category); ?>
 <h1>TOP</h1>
 <?php
     echo $this->Html->link(
@@ -9,7 +10,17 @@
 ?>
 <?php foreach ($categories as $category): ?>
 <ul>
-    <li><?php echo $category['Category']['name']; ?></li>
+    <li>
+        <?php echo $this->Html->link(
+            $category['Category']['name'],
+                array(
+                    'controller' => 'posts',
+                    'action' => 'categoryIndex',
+                    $category['Category']['id']
+                )
+            );
+        ?>
+    </li>
 </ul>
 <?php endforeach; ?>
 <?php unset($category); ?>
@@ -19,10 +30,10 @@
     <tr>
         <th><?php echo $this->Paginator->sort('Post.title', 'タイトル'); ?></th>
         <th>名前</th>
-        <th><?php echo $this->Paginator->sort('Category.name', 'カテゴリー名'); ?></th>
-        <th><?php echo $this->Paginator->sort('Post.due_date', '期限'); ?></th>
+        <th>カテゴリー名</th>
+        <th><?php echo $this->Paginator->sort('Post.due_date', '掲載終了日時'); ?></th>
         <th><?php echo $this->Paginator->sort('Post.price', '価格'); ?></th>
-        <th><?php echo $this->Paginator->sort('Post.modified', '最終更新時間'); ?></th>
+        <th><?php echo $this->Paginator->sort('Post.modified', '最終更新日時'); ?></th>
         <th>イメージ</th>
         <th>アクション</th>
     </tr>
@@ -30,15 +41,23 @@
     <?php foreach ($posts as $post): ?>
     <tr>
         <td>
-            <?php echo $this->Html->link($post['Post']['title'],
-array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
+            <?php 
+                echo $this->Html->link(
+                    $post['Post']['title'],
+                        array(
+                            'controller' => 'posts',
+                            'action' => 'view',
+                            $post['Post']['id']
+                        )
+                    );
+            ?>
         </td>
         <td><?php echo h($post['Post']['name']); ?></td>
         <td></td>
         <td><?php echo $post['Post']['due_date']; ?></td>
         <td><?php echo $post['Post']['price']; ?></td>
         <td><?php echo $post['Post']['modified']; ?></td>
-        <td><?php echo $this->Upload->uploadImage($post['Image'],'Image.img',array('style' => 'thumb')); ?></td>
+        <td><?php echo $this->Upload->uploadImage($post['Post'],'Post.img',array('style' => 'thumb')); ?></td>
         <td>
             <?php echo $this->Form->postLink(
                 '削除',
