@@ -1,38 +1,24 @@
 <?php
      class Post extends AppModel {
-         public $belongsTo = array('Category');
         
 //         public $hasMany = array('Table_attachment');
 
-//         public $actsAs = [
-//               'Upload.Upload' => [
-//                   'photo' => [
-//                       'fields' => [
-//                           'dir' => 'photo_dir'
-//                       ]
-//                   ]
-//               ]
-//           ];
+         public $name = 'Post';
+            
+         public $belongsTo = array(
+              'User' => array(
+                  'className' => 'User',
+                  'foreignKey' => 'user_id'
+              ),
+              'Category' => array(
+                  'className' => 'Category',
+                  'foreignKey' => 'category_id'
+              )
+          );
 
-        public $hasMany = array(
-            'Image' => array(
-                'className' => 'Attachment',
-                'foreignKey' => 'foreign_key',
-                'conditions' => array(
-                    'Attachment.model' => 'Menu',
-                ),
-            ),
-        ); 
-
-          public $hasMany = array(
-                'Image' => array(
-                    'className' => 'Attachment',
-                    'foreignKey' => 'foreign_key',
-                    'conditions' => array(
-                        'Attachment.model' => 'Post',
-                    ),
-                ),
-            );
+ //        public $hasAndBelongsToMany = array('Category');
+        
+         public $hasOne = array('Image');
 
          public $validate = array(
             'title' => array(

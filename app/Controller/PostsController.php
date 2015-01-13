@@ -1,6 +1,6 @@
 <?php 
 class PostsController extends AppController {
-    public $helpers = array('Html', 'Form', 'Session');
+    public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload', 'Paginator'); // 使用するヘルパーの指定
 
     public $uses = array('Attachment', 'Img_user', 'User', 'Post', 'Category') ;
 
@@ -26,6 +26,10 @@ class PostsController extends AppController {
 
         return parent::isAuthorized($user);
     } 
+
+    public function beforeRender() {
+   //     $this->set('categoryList', $this->Post->Category->find('list'));
+    }
 
     public function index() {
         $this->set('posts', $this->Post->find('all'));
