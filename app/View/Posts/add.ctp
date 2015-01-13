@@ -22,5 +22,8 @@
     echo $this->Form->input('Image.0.photo_person', array('type' => 'file'));
     echo $this->Form->input('Image.0.name', array('type' => 'file'));
     echo $this->Form->submit('出品', array('class' => 'btn btn-primary'));
+    echo $this->Form->input('Image.0.name', array('type' => 'file')); 
+    echo $this->Form->hidden('Image.0.model', array('value'=>'Person'));
+    echo $this->Form->input('Image.0.photo_person', array('type' => 'file')); 
 ?>
 

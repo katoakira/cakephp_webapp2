@@ -3,25 +3,16 @@ App::uses('AppModel', 'Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
-//     public $actsAs = [
-//         'Upload.Upload' => [
-//            'photo' => [
-//                'fields' => [
-//                    'dir' => 'photo_dir'
-//                ]
-//            ]
-//        ]
-//    ]; 
-
     public $hasMany = array(
-           'Image' => array(
-               'className' => 'Attachment',
-               'foreignKey' => 'foreign_key',
-               'conditions' => array(
-                   'Attachment.model' => 'User',
-               ),
-           ),
-       );
+        'Image' => array(
+            'className' => 'Attachment',
+            'foreignKey' => 'foreign_key',
+            'conditions' => array(
+                'Attachment.model' => 'User',
+            ),
+        ),
+    ); 
+
     public $validate = array(
         'username' => array(
             'required' => array(
