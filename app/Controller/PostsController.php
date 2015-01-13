@@ -2,7 +2,7 @@
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session');
 
-    public $uses = array('Img_user', 'User', 'Post', 'Category') ;
+    public $uses = array('Attachment', 'Img_user', 'User', 'Post', 'Category') ;
 
     public function isAuthorized($user) {
 //        // 登録済ユーザーは投稿できる
@@ -53,8 +53,11 @@ class PostsController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); //Added this line
             $this->Post->create();
-            if ($this->Post->save($this->request->data)) {
+            if ($this->Post->saveall($this->request->data)) {
+                $path = '/var/www/html/02_cakephp/app/webroot/img';
+                $image = $this->request->data['Post']['img']; 
                 $this->Session->setFlash(__('出品しました'));
+                move_upload_file($image['img']);
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('出品できません'));

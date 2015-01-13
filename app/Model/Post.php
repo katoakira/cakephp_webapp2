@@ -1,6 +1,8 @@
 <?php
      class Post extends AppModel {
          public $belongsTo = array('Category');
+    
+//        public $hasMany = array('Img_user'); // Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Img_user.post_id' in 'field list'
 
          public $validate = array(
             'title' => array(
