@@ -89,4 +89,8 @@ array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
     <?php endforeach; ?>
     <?php unset($post); ?>
 </table>
-
+<div class="paginateLinks">
+<?php echo $this->Paginator->prev(); ?>&nbsp;
+<?php echo $this->Paginator->numbers(); ?>&nbsp;
+<?php echo $this->Paginator->next(); ?>
+</div>

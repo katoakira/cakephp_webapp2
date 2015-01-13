@@ -2,7 +2,16 @@
 class PostsController extends AppController {
     public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload', 'Paginator'); // 使用するヘルパーの指定
 
-    public $uses = array('Attachment', 'Img_user', 'User', 'Post', 'Category') ;
+    public $uses = array('Image', 'User', 'Post', 'Category'); // 使用するモデルの指定
+
+    public $paginate = array( //Paginatorを使用 
+        'Post' => array( //Postモデルで
+            'order' => array( // 並び方は
+                'modified' => 'DESC' // 最終更新時間降順
+            ),
+            'limit' => 30 // 30ページで
+        )
+    );
 
     public function isAuthorized($user) {
 //        // 登録済ユーザーは投稿できる
@@ -28,7 +37,7 @@ class PostsController extends AppController {
     } 
 
     public function beforeRender() {
-   //     $this->set('categoryList', $this->Post->Category->find('list'));
+    //    $this->set('categoryList', $this->Post->Category->find('list'));
     }
 
     public function index() {
@@ -57,9 +66,7 @@ class PostsController extends AppController {
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); //Added this line
             $this->Post->create();
-            if ($this->Post->saveall($this->request->data)) {
-                $path = '/var/www/html/02_cakephp/app/webroot/img';
-                $image = $this->request->data['Post']['img']; 
+            if ($this->Post->save($this->request->data)) {
                 $this->Session->setFlash(__('出品しました'));
                 move_upload_file($image['img']);
                 return $this->redirect(array('action' => 'index'));
