@@ -42,25 +42,22 @@ class AppController extends Controller {
     );
 
      public $helpers = array(
-            'Session',
-            'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
-            'Form' => array('className' => 'BoostCake.BoostCakeForm'),
-            'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
-        );
+         'Session',
+         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+         'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+         'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+     );
 
      public function beforeFilter() {
-            $this->set('user', $this->Auth->user());
-            $this->Auth->allow('index', 'view');
+         $this->set('user', $this->Auth->user());
+         $this->Auth->allow('index', 'view', 'categoryIndex');
      }
 
      public function isAuthorized($user) {
-            if(isset($user)) {
-//            if (isset($user['role']) && $user['role'] === 'admin') {
-                return true;
-            }
-        
-            // デフォルトは拒否
-            return false;
+         if(isset($user)) {
+             return true;
+         }
+         // デフォルトは拒否
+         return false;
      } 
-
 }
