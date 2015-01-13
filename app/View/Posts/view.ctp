@@ -7,4 +7,10 @@
 <p>最終更新日時：<?php echo $post['Post']['modified']; ?></p>
 <p><?php echo $this->Upload->uploadImage($post['Post'], 'Post.img', array('style' => 'big')); ?></p>
 <p>紹介文：<?php echo h($post['Post']['body']); ?></p>
-
+<div class="pageLink">
+    <p>
+        <?php echo $this->Html->link( $post['Category']['name'] . 'へ戻る', array('controller' => 'posts', 'action' => 'categoryIndex', $post['Category']['id']));?></p>
+</div>
+<div class="pageLink">
+    <p><?php echo $this->Html->link('戻る', array('controller' => 'posts', 'action' => 'index'));?></p>
+</div>

@@ -3,13 +3,23 @@
     <fieldset>
         <legend><?php echo __('Add User'); ?></legend>  
             <?php 
-                echo $this->Form->input('username');
-                echo $this->Form->input('password');
-        //        echo $this->Form->input('role', array(
-        //            'options' => array('admin' => 'Admin', 'author' => 'Author')
-        //        )
-        //    );
+                echo $this->Form->input('username',array('label' => 'ユーザー名'));
+                echo $this->Form->input('password', array('label' => 'パスワード'));
             ?>
     </fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php
+     echo $this->Form->submit('登録',
+        array(
+           'controller' => 'posts',
+           'action' => 'index'
+       ),
+       array(
+           'class' => 'btn btn-primary'
+           'label' => '登録'
+       )
+    );
+?>
+</div>
+<div class="pageLink">
+    <p><?php echo $this->Html->link('戻る', array('controller' => 'posts', 'action' => 'index'));?></p>
 </div>
