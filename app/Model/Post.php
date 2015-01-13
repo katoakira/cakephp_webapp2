@@ -1,6 +1,35 @@
 <?php
      class Post extends AppModel {
-        
+
+         public $actsAs = array(
+             'UploadPack.Upload' => array(
+                 'img' => array(
+                      'path' => ':webroot/img/:id/:style.:extension',
+                      'styles' => array(
+                         'big' => '200x200',
+                         'small' => '120x120',
+                         'thumb' => '80x80'
+                       )
+                  )
+             )
+         );
+
+
+        //var $validate = array(  
+        //    'img' => array(  
+        ////○○キロバイト以下のファイルでアップロードしてください。  
+        //        'maxSize' => array(  
+        //            'rule' => array('attachmentMaxSize', 1048576),  
+        //            'message' => '1MB以下のファイルでアップロードしてください'  
+        //        ),  
+        ////○○キロバイト以上のファイルでアップロードしてください。(あまりにも小さいファイルはアップロードさせない)  
+        //        'minSize' => array(  
+        //            'rule' => array('attachmentMinSize', 1024),  
+        //            'message' => '1KB以上のファイルでアップロードしてください'  
+        //        )  
+        //    )  
+        // );  
+
 //         public $hasMany = array('Table_attachment');
 
          public $name = 'Post';

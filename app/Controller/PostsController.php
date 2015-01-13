@@ -41,6 +41,7 @@ class PostsController extends AppController {
     }
 
     public function index() {
+        $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
     }
