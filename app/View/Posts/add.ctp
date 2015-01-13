@@ -13,10 +13,14 @@
     echo $this->Form->input('Post.title');
     echo $this->Form->input('Post.name');
 //    echo $this->Form->input('') //カテゴリー選択
-    echo $this->Form->input('Post.body');
-    echo $this->Form->input('Post.img', array('label' => false, 'type' => 'file', 'multiple'));
-    echo $this->Form->input('Post.price');
-    echo $this->Form->input('Post.due_date');
+    echo $this->Form->input('body');
+//    echo $this->Form->input('photo', array('type' => 'file'));
+    echo $this->Form->input('price');
+    echo $this->Form->input('due_date');
+    //    echo $this->Form->input('photo_dir', array('type' => 'hidden'));
+    echo $this->Form->hidden('Image.0.model', array('value'=>'Person'));
+    echo $this->Form->input('Image.0.photo_person', array('type' => 'file'));
+    echo $this->Form->input('Image.0.name', array('type' => 'file'));
     echo $this->Form->submit('出品', array('class' => 'btn btn-primary'));
 ?>
 

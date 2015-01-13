@@ -1,8 +1,28 @@
 <?php
      class Post extends AppModel {
          public $belongsTo = array('Category');
-    
-//        public $hasMany = array('Img_user'); // Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Img_user.post_id' in 'field list'
+        
+//         public $hasMany = array('Table_attachment');
+
+//         public $actsAs = [
+//               'Upload.Upload' => [
+//                   'photo' => [
+//                       'fields' => [
+//                           'dir' => 'photo_dir'
+//                       ]
+//                   ]
+//               ]
+//           ];
+
+        public $hasMany = array(
+            'Image' => array(
+                'className' => 'Attachment',
+                'foreignKey' => 'foreign_key',
+                'conditions' => array(
+                    'Attachment.model' => 'Menu',
+                ),
+            ),
+        ); 
 
          public $validate = array(
             'title' => array(
