@@ -1,8 +1,8 @@
 <?php 
 class PostsController extends AppController {
-    public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload', 'Paginator');
+    public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload');
 
-    public $uses = array('Image', 'User', 'Post', 'Category');
+    public $uses = array('User', 'Post', 'Category', 'Comment');
 
     public $paginate = array( 
         'Post' => array(
@@ -30,9 +30,7 @@ class PostsController extends AppController {
         $this->set('categories', $this->Category->find('all'));
     }
 
-
     public function categoryIndex($id = null) {
-
         if (!$id) {
             throw new NotFoundException(__('閲覧できません'));
         }
@@ -55,9 +53,19 @@ class PostsController extends AppController {
         if (!$post) {
             throw new NotFoundException(__('閲覧できません'));
         }
-
+        
         $this->set('post', $post);
+        
+        if ($this->request->is('post')) {
+            $this->request->data['Comment']['user_id'] = $this->Auth->user('id');
+            $this->request->data['Comment']['post_id'] = $post['Post']['id'];
 
+            $this->Comment->create();
+            if ($this->Comment->save($this->request->data)) {
+                $this->Session->setFlash(__('コメントを送信しました'));
+            }
+                $this->Session->setFlash(__('コメントを送信できません'));
+        }
     }
 
     public function add() {
@@ -68,8 +76,8 @@ class PostsController extends AppController {
                 )
             )
         );
-        $this->set('category', $category); 
 
+        $this->set('category', $category); 
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id'); 
 
@@ -111,6 +119,7 @@ class PostsController extends AppController {
                 )
             );   
         }
+
         $this->set('post', $post);
         if ($this->request->is(array('post', 'put'))) {
             $this->Post->id = $id;

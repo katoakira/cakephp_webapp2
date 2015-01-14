@@ -18,9 +18,11 @@ class UsersController extends AppController {
             }
         }
     }
+
     
     public function logout() {
         $this->redirect($this->Auth->logout());
+        $this->Session->setFlash('ログアウトしました');
     }
 
     public function index() {

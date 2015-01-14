@@ -1,5 +1,7 @@
 <?php
      class Post extends AppModel {
+        
+         public $name = 'Post';
 
          public $actsAs = array(
              'UploadPack.Upload' => array(
@@ -13,8 +15,6 @@
                  )
              )
          );
-
-         public $name = 'Post';
             
          public $belongsTo = array(
               'User' => array(
@@ -26,7 +26,13 @@
                   'foreignKey' => 'category_id'
               )
           );
-
+        
+         public $hasMany = array(
+             'Comment' => array(
+                 'className' => 'Comment',
+                 'foreignKey' => 'post_id'
+             )
+         );
 
          public $validate = array(
             'title' => array(

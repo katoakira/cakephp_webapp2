@@ -7,6 +7,10 @@ class User extends AppModel {
         'Post' => array(
             'className' => 'Post',
             'forignKey' => 'user_id'
+        ),
+        'Comment' => array(
+            'className' => 'Comment',
+            'foreignKey' => 'user_id'
         )
     ); 
 
