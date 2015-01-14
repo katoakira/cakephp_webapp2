@@ -61,7 +61,7 @@
                              array('class' => 'navbar-brand')
                         );
                         echo $this->Html->link(
-                            '登録',
+                            '新規登録',
                             array('controller' => 'users', 'action' => 'add'),
                             array('class' => 'navbar-brand')
                         );

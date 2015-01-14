@@ -1,7 +1,7 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend><?php echo __('Add User'); ?></legend>  
+        <legend><?php echo __('新規登録'); ?></legend>  
             <?php 
                 echo $this->Form->input('username',array('label' => 'ユーザー名'));
                 echo $this->Form->input('password', array('label' => 'パスワード'));
@@ -14,7 +14,7 @@
            'action' => 'index'
        ),
        array(
-           'class' => 'btn btn-primary'
+           'class' => 'btn btn-primary',
            'label' => '登録'
        )
     );

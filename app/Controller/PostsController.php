@@ -25,6 +25,7 @@ class PostsController extends AppController {
     } 
 
     public function index() {
+
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
@@ -57,14 +58,22 @@ class PostsController extends AppController {
         $this->set('post', $post);
         
         if ($this->request->is('post')) {
+            $user = $this->Auth->user();
+            if(!$user) {
+                $this->Session->setFlash(__('コメントを送信できません'));
+                $this->redirect(array('action' => 'view', $id));
+            }
+
             $this->request->data['Comment']['user_id'] = $this->Auth->user('id');
             $this->request->data['Comment']['post_id'] = $post['Post']['id'];
-
             $this->Comment->create();
             if ($this->Comment->save($this->request->data)) {
                 $this->Session->setFlash(__('コメントを送信しました'));
+                return $this->redirect(array('action' => 'view', $id));
             }
-                $this->Session->setFlash(__('コメントを送信できません'));
+
+            $this->Session->setFlash(__('コメントを送信できません'));
+            return $this->redirect(array('action' => 'view', $id));
         }
     }
 

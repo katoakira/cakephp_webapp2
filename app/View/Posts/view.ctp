@@ -13,16 +13,15 @@
 <?php 
     echo $this->Form->create('Comment');
     echo $this->Form->input('body', array('label' => 'コメント', 'placeholder' => 'コメントを入力してください'));
-    echo $this->Form->submit('送信'));
+    echo $this->Form->submit('送信');
 ?>
-<?php foreach($post['Comment'] as $comment); ?>
+<?php foreach($post['Comment'] as $comment): ?>
 <ul>
     <li>
-        <?php echo $comment['User']['name']; ?>
-        <?php echo $comment['Comment']['body']; ?>
+        <?php echo $comment['body']; ?>
     </li>
 </ul>
-<?php // endforeach; ?>
+<?php  endforeach; ?>
 
 <hr> 
 
