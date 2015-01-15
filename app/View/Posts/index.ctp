@@ -7,6 +7,17 @@
         array('class' => 'btn btn-primary', 'style' => 'margin-bottom: 20px; margin-left: 10px')
     );
 ?>
+
+<hr>
+
+<?php 
+    echo $this->Form->create('Post', array('action' => 'search', 'type' => 'post'));
+    echo $this->Form->input('search_word');
+    echo $this->Form->submit('検索');
+?>
+
+<hr>
+
 <?php foreach ($categories as $category): ?>
 <ul>
     <li>
