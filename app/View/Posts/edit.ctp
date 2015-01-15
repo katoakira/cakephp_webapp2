@@ -8,9 +8,6 @@
         'placeholder' => 'タイトルを入力してください',
         'label' => 'タイトル'
         ));
-    echo $this->Form->input('name',array(
-        'placeholder' => '名前を入力してください',
-        'label' => '投稿者名'));
     echo $this->Form->input('category_id',array(
             'type' => 'select',
             'options' => $category,

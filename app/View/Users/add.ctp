@@ -3,8 +3,10 @@
     <fieldset>
         <legend><?php echo __('新規登録'); ?></legend>  
             <?php 
-                echo $this->Form->input('username',array('label' => 'ユーザー名'));
+                echo $this->Form->input('username', array('label' => 'ユーザー名'));
+                echo $this->Form->input('email', array('label' => 'Eメール'));
                 echo $this->Form->input('password', array('label' => 'パスワード'));
+                echo "※「ユーザー名」は出品時の「投稿者名」、コメントする際に記載されるものです"
             ?>
     </fieldset>
 <?php

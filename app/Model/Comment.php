@@ -14,6 +14,8 @@
             )
         );
 
+//        public $hasOne = array('User');
+
         public $validate = array(
             'body' => array(
                 'required' => array(

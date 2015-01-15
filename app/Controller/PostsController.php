@@ -56,7 +56,6 @@ class PostsController extends AppController {
         }
         
         $this->set('post', $post);
-        
         if ($this->request->is('post')) {
             $user = $this->Auth->user();
             if(!$user) {
@@ -65,6 +64,7 @@ class PostsController extends AppController {
             }
 
             $this->request->data['Comment']['user_id'] = $this->Auth->user('id');
+            $this->request->data['Comment']['username'] = $this->Auth->user('username');
             $this->request->data['Comment']['post_id'] = $post['Post']['id'];
             $this->Comment->create();
             if ($this->Comment->save($this->request->data)) {
@@ -85,10 +85,10 @@ class PostsController extends AppController {
                 )
             )
         );
-
+        
         $this->set('category', $category); 
         if ($this->request->is('post')) {
-            $this->request->data['Post']['user_id'] = $this->Auth->user('id'); 
+            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
 
             $this->Post->create();
             if ($this->Post->save($this->request->data)) {
