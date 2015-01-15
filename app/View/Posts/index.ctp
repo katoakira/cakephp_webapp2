@@ -30,7 +30,6 @@
         <th><?php echo $this->Paginator->sort('Post.title', 'タイトル'); ?></th>
         <th>名前</th>
         <th>カテゴリー名</th>
-        <th><?php echo $this->Paginator->sort('Post.due_date', '掲載終了日時'); ?></th>
         <th><?php echo $this->Paginator->sort('Post.price', '価格'); ?></th>
         <th><?php echo $this->Paginator->sort('Post.modified', '最終更新日時'); ?></th>
         <th>イメージ</th>
@@ -53,7 +52,6 @@
         </td>
         <td><?php echo h($post['Post']['name']); ?></td>
         <td><?php echo h($post['Category']['name']); ?></td>
-        <td><?php echo $post['Post']['due_date']; ?></td>
         <td>¥<?php echo $post['Post']['price']; ?></td>
         <td><?php echo $post['Post']['modified']; ?></td>
         <td><?php echo $this->Upload->uploadImage($post['Post'],'Post.img',array('style' => 'thumb')); ?></td>

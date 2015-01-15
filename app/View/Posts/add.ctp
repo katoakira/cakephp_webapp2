@@ -3,6 +3,7 @@
 <?php
     echo $this->Form->create('Post', array('type' => 'file'));
     echo $this->Form->input('id', array('type' => 'hidden'));
+    echo $this->Form->input('name', array('type' => 'hidden'));
     echo $this->Form->input('title', array(
         'placeholder' => 'タイトルを入力してください',
         'label' => 'タイトル'
@@ -17,7 +18,6 @@
         'label' => '紹介文'));
     echo $this->Form->file('img', array('label' => '画像'));
     echo $this->Form->input('price', array('label' => '価格'));
-    echo $this->Form->input('due_date', array('label' => '掲載終了期限'));
     echo $this->Form->submit('出品',
          array('action' => 'index'),
          array('class' => 'btn btn-primary')

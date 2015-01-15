@@ -25,7 +25,6 @@ class PostsController extends AppController {
     } 
 
     public function index() {
-
         $this->set($this->paginate());
         $this->set('posts', $this->Post->find('all'));
         $this->set('categories', $this->Category->find('all'));
@@ -89,9 +88,10 @@ class PostsController extends AppController {
         $this->set('category', $category); 
         if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
+            $this->request->data['Post']['name'] = $this->Auth->user('username');
 
             $this->Post->create();
-            if ($this->Post->save($this->request->data)) {
+            if ($this->Post->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('出品しました'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -99,6 +99,7 @@ class PostsController extends AppController {
         } 
 
     }
+
 
    public function edit($id = null) {
        $category = $this->Category->find('list',
@@ -148,29 +149,30 @@ class PostsController extends AppController {
         }
    }
 
-    public function delete($id) {
-        if ($this->request->is('get')) {
-            throw new MethodNotAllowedException();
-        }
+    
+   public function delete($id) {
+       if ($this->request->is('get')) {
+           throw new MethodNotAllowedException();
+       }
 
-        $user = $this->Auth->user();
-        $post = $this->Post->findById($id);
-        if ($post['Post']['user_id'] !== $user['id']) {
-            $this->Session->setFlash(__('編集できません'));
-            return $this->redirect(array(
-                'controller' => 'posts',
-                'action' => 'index'
-                )
-            );
-        }
+       $user = $this->Auth->user();
+       $post = $this->Post->findById($id);
+       if ($post['Post']['user_id'] !== $user['id']) {
+           $this->Session->setFlash(__('編集できません'));
+           return $this->redirect(array(
+               'controller' => 'posts',
+               'action' => 'index'
+               )
+           );
+       }
 
-        if ($this->Post->delete($id)) {
-            $this->Session->setFlash(__('削除しました'));
-            return $this->redirect(array(
-                'controller' => 'posts',
-                'action' => 'index'
-                )
-            );
-        }
+       if ($this->Post->delete($id)) {
+           $this->Session->setFlash(__('削除しました'));
+           return $this->redirect(array(
+               'controller' => 'posts',
+               'action' => 'index'
+               )
+           );
+       }
     }
 } 

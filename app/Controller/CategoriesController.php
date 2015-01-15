@@ -51,10 +51,10 @@ class CategoriesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Category->delete()) {
-			$this->Session->setFlash(__('カテゴリーを削除しました'));
+            $this->Session->setFlash(__('カテゴリーを削除しました'));
+            $this->redirect(array('action' => 'index'));
 		} else {
             $this->Session->setFlash(__('カテゴリーを削除できません。もう一度入力してください。'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }
