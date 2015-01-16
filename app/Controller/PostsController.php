@@ -2,7 +2,7 @@
 class PostsController extends AppController {
      public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload');
  
-//     public $components = array('Search.Prg'); 
+     public $components = array('Search.Prg'); 
   
      public $uses = array('User', 'Post', 'Category', 'Comment');
  
@@ -61,7 +61,7 @@ class PostsController extends AppController {
              $user = $this->Auth->user();
              if(!$user) {
                  $this->Session->setFlash(__('コメントを送信できません'));
-                 $this->redirect(array('action' => 'view', $id));
+                 $this->redirect(array('controller' => 'posts', 'action' => 'view', $id));
              }
  
              $this->request->data['Comment']['user_id'] = $this->Auth->user('id');
@@ -70,11 +70,11 @@ class PostsController extends AppController {
              $this->Comment->create();
              if ($this->Comment->save($this->request->data)) {
                  $this->Session->setFlash(__('コメントを送信しました'));
-                 return $this->redirect(array('action' => 'view', $id));
+                 return $this->redirect(array('controller' => 'posts', 'action' => 'view', $id));
              }
  
              $this->Session->setFlash(__('コメントを送信できません'));
-             return $this->redirect(array('action' => 'view', $id));
+             return $this->redirect(array('controller' => 'posts', 'action' => 'view', $id));
          }
      }
  
@@ -95,7 +95,7 @@ class PostsController extends AppController {
              $this->Post->create();
              if ($this->Post->saveAll($this->request->data)) {
                  $this->Session->setFlash(__('出品しました'));
-                 return $this->redirect(array('action' => 'index'));
+                 return $this->redirect(array('controller' => 'posts', 'action' => 'index'));
              }
              $this->Session->setFlash(__('出品できません'));
          } 
@@ -124,11 +124,7 @@ class PostsController extends AppController {
          
          if ($post['Post']['user_id'] !== $user['id']) {
              $this->Session->setFlash(__('編集できません'));
-             return $this->redirect(array(
-                 'controller' => 'posts',
-                 'action' => 'index'
-                 )
-             );   
+             return $this->redirect(array('controller' => 'posts', 'action' => 'index'));   
          }
  
          $this->set('post', $post);
@@ -136,11 +132,7 @@ class PostsController extends AppController {
              $this->Post->id = $id;
              if ($this->Post->saveAll($this->request->data)) {
                  $this->Session->setFlash(__('編集しました'));
-                 return $this->redirect(array(
-                     'controller' => 'posts',
-                     'action' => 'index'
-                     )
-                 );
+                 return $this->redirect(array('controller' => 'posts', 'action' => 'index'));
              }
              $this->Session->setFlash(__('編集できません'));
          }
@@ -176,21 +168,21 @@ class PostsController extends AppController {
         }
     }
  
- //   public function search() {
- //       // 検索条件設定  
- //       $this->Prg->commonProcess();
- //       if (isset($this->passedArgs['search_word'])) {
- //           //条件を生成
- //           $conditions = $this->Post->parseCriteria($this->passedArgs);
- //
- //           $this->paginate = array(  
- //               'conditions' => $conditions,  
- //               'limit' => 30,
- //               'order' => array(
- //               'id' => 'desc'
- //               )
- //           );
- //           $this->set('data', $this->paginate('Post'));
- //       }  
- //   }
+    public function search() {
+        // 検索条件設定  
+        $this->Prg->commonProcess();
+        if (isset($this->passedArgs['search_word'])) {
+            //条件を生成
+            $conditions = $this->Post->parseCriteria($this->passedArgs);
+ 
+            $this->paginate = array(  
+                'conditions' => $conditions,  
+                'limit' => 30,
+                'order' => array(
+                'id' => 'desc'
+                )
+            );
+            $this->set('data', $this->paginate('Post'));
+        }  
+    }
 } 

@@ -1,4 +1,3 @@
-<?php debug($category); ?>
 <h1>出品</h1>
 <?php
     echo $this->Form->create('Post', array('type' => 'file'));

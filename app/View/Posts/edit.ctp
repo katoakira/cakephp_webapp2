@@ -1,5 +1,3 @@
-<?php debug($post);
-      debug($user);?>
 <h1>編集</h1>
 <?php
     echo $this->Form->create('Post', array('type' => 'file'));

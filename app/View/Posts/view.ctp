@@ -1,4 +1,3 @@
-<?php debug($post); ?>
 <h1><?php echo h($post['Post']['title']); ?></h1>
 <p>カテゴリー名：<?php echo h($post['Category']['name']); ?></p>
 <p>投稿者名：<?php echo h($post['User']['username']); ?></p>

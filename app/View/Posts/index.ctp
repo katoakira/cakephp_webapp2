@@ -12,7 +12,7 @@
 
 <?php 
     echo $this->Form->create('Post', array('action' => 'search', 'type' => 'post'));
-    echo $this->Form->input('search_word');
+    echo $this->Form->input('search_word', array('label' => '', 'placeholder' => '文字を入力してください'));
     echo $this->Form->submit('検索');
 ?>
 
