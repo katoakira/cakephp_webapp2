@@ -1,6 +1,7 @@
 <?php
-     class Post extends AppModel {
-        
+App::uses('AppModel', 'Model');
+class Post extends AppModel {
+
          public $name = 'Post';
 
          public $actsAs = array(

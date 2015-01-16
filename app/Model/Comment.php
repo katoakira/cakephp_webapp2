@@ -1,27 +1,26 @@
 <?php
-    class Comment extends AppModel {
-    
-        public $name = 'Comment';    
-    
-        public $belongsTo = array(
-            'User' => array(
-                'className' => 'User',
-                'foreignKey' => 'user_id'
-            ),
-            'Post' => array(
-                'className' => 'Post',
-                'foreginKey' => 'post_id'
-            )
-        );
+App::uses('AppModel', 'Model');    
+class Comment extends AppModel {
+  
+    public $name = 'Comment';    
+  
+    public $belongsTo = array(
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'user_id'
+        ),
+        'Post' => array(
+            'className' => 'Post',
+            'foreginKey' => 'post_id'
+        )
+    );
 
-//        public $hasOne = array('User');
-
-        public $validate = array(
-            'body' => array(
-                'required' => array(
-                    'rule' => 'notEmpty',
-                    'message' => '文字を入力してください'
-                )
+    public $validate = array(
+        'body' => array(
+            'required' => array(
+                'rule' => 'notEmpty',
+                'message' => '文字を入力してください'
             )
-        );  
-    }
+        )
+    );  
+}
