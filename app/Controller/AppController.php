@@ -50,6 +50,7 @@ class AppController extends Controller {
 
      public function beforeFilter() {
          $this->set('user', $this->Auth->user());
+         $this->Auth->authError = __('ログインしてください');
          $this->Auth->allow('index', 'view', 'categoryIndex');
      }
 
