@@ -5,6 +5,7 @@ class Post extends AppModel {
     public $name = 'Post';
 
     public $actsAs = array(
+        'Search.Searchable',
         'UploadPack.Upload' => array(
             'img' => array(
                  'path' => ':webroot/img/:id/:style.:extension',
@@ -15,7 +16,6 @@ class Post extends AppModel {
                 )
             )
         ),
-        'Search.Searchable'
     );
 
     public $belongsTo = array(
@@ -75,5 +75,40 @@ class Post extends AppModel {
 
     // 検索対象のフィルタ設定
     public $filterArgs = array(
-    ); 
+        array(
+            'name' => 'search_word',
+            'type' => 'query',
+            'method' => 'WordSearch'
+        )
+    );
+
+    public function WordSearch($data = array()) {
+        $this->log( $data );    
+        $keyword = mb_convert_kana($data['search_word'], "s", "UTF-8");
+        $keywords = explode(' ', $keyword);
+    
+        if (count($keywords) < 2) {
+            $conditions = array(
+                'OR' => array(
+                    $this->alias.'.name LIKE' => '%' . $keyword . '%',
+                    $this->alias.'.body LIKE' => '%' . $keyword . '%',
+                    $this->alias.'.title LIKE' => '%' . $keyword . '%'
+                )
+            );
+        } else {
+           $conditions['AND'] = array();
+               foreach ($keywords as $count => $keyword) {
+                   $condition = array(
+                       'OR' => array(
+                           $this->alias.'.name LIKE' => '%' . $keyword . '%',
+                           $this->alias.'.body LIKE' => '%' . $keyword . '%',
+                           $this->alias.'.title LIKE' => '%' . $keyword . '%'
+                       )
+                   );
+                   array_push($conditions['AND'], $condition);
+               }
+        }
+        $this->log( $conditions );
+        return $conditions;
+    }
 }

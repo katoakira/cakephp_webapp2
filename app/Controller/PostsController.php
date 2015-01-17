@@ -4,12 +4,9 @@ class PostsController extends AppController {
  
      public $components = array('Search.Prg'); 
 
-     public $presetVars = array(
-         array('field' => 'title', 'type' => 'value'
-         )
-     );
+     public $presetVars = true; 
   
-     public $uses = array('User', 'Post', 'Category', 'Comment');
+     public $uses = array('Post', 'User', 'Category', 'Comment');
  
      public $paginate = array( 
          'Post' => array(
@@ -32,11 +29,30 @@ class PostsController extends AppController {
      } 
  
      public function index() {
+         $this->Post->recursive = 0;
          $this->set($this->paginate());
          $this->set('posts', $this->Post->find('all'));
          $this->set('categories', $this->Category->find('all'));
-
+        
+         // 検索条件設定
          $this->Prg->commonProcess();
+         if (isset($this->passedArgs['search_word'])) {
+             //条件を生成
+             $conditions = $this->Post->parseCriteria($this->passedArgs);
+                          
+             $this->paginate = array(
+                 'Post' => array(
+                     'conditions' => $conditions,  
+                     'limit' => 30,
+                     'order' => array(
+                         'id' => 'desc'
+                     )
+                 )
+             );
+             $this->set('posts', $this->paginate('Post'));
+             $this->set('passedArgs', $this->passedArgs['search_word']);
+             $this->set('conditions', $conditions);
+         }
      }
  
      public function categoryIndex($id = null) {

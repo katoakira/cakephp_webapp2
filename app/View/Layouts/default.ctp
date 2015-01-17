@@ -39,7 +39,6 @@
 	?>
 </head>
 <body style="padding-top: 70px;">
-
 	<div id="container">
 		<div id="header">
            <nav class="navbar navbar-fixed-top">
