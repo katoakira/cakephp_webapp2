@@ -14,8 +14,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-//$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
-//$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,31 +40,33 @@
 	<div id="container">
 		<div id="header">
            <nav class="navbar navbar-fixed-top">
-                <div id="navbar-header">
-                <?php
-                    if($user) {
-                        echo $this->Html->link(
-                            'ログアウト',
-                             array('controller' => 'users', 'action' => 'logout'),
-                             array('class' => 'navbar-brand active' )
-                         );
-                        echo "<div class='navbar-brand active'>";
-                        echo sprintf("ようこそ %s さん", $user['username']);
-                        echo "</div>";
-                    } else {
-                        echo $this->Html->link(
-                            'ログイン',
-                             array('controller' => 'users', 'action' => 'login'),
-                             array('class' => 'navbar-brand active')
-                        );
-                        echo $this->Html->link(
-                            '新規登録',
-                            array('controller' => 'users', 'action' => 'add'),
-                            array('class' => 'navbar-brand active')
-                        );
-                    }
-                echo "<br />";
-                ?>
+                <div id="navbar-inner">
+                    <div class="container">
+                    <?php
+                        if($user) {
+                            echo $this->Html->link(
+                                'ログアウト',
+                                 array('controller' => 'users', 'action' => 'logout'),
+                                 array('class' => 'navbar active' )
+                             );
+                            echo "<div class='navbar active'>";
+                            echo sprintf("ようこそ %s さん", $user['username']);
+                            echo "</div>";
+                        } else {
+                            echo $this->Html->link(
+                                'ログイン',
+                                 array('controller' => 'users', 'action' => 'login'),
+                                 array('class' => 'navbar active')
+                            );
+                            echo $this->Html->link(
+                                '新規登録',
+                                array('controller' => 'users', 'action' => 'add'),
+                                array('class' => 'navbar active')
+                            );
+                        }
+                    echo "<br />";
+                    ?>
+                    </div>
                 </div>
             </nav> 
 
@@ -78,17 +78,6 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-<!--
-           <?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-            </p>
--->
 		</div>
 	</div>
 	<?php // echo $this->element('sql_dump'); ?>
