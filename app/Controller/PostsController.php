@@ -3,6 +3,11 @@ class PostsController extends AppController {
      public $helpers = array('Html', 'Form', 'Session', 'UploadPack.Upload');
  
      public $components = array('Search.Prg'); 
+
+     public $presetVars = array(
+         array('field' => 'title', 'type' => 'value'
+         )
+     );
   
      public $uses = array('User', 'Post', 'Category', 'Comment');
  
@@ -30,6 +35,8 @@ class PostsController extends AppController {
          $this->set($this->paginate());
          $this->set('posts', $this->Post->find('all'));
          $this->set('categories', $this->Category->find('all'));
+
+         $this->Prg->commonProcess();
      }
  
      public function categoryIndex($id = null) {
@@ -116,12 +123,12 @@ class PostsController extends AppController {
              throw new NotFoundException(__('編集できません'));
          }
  
-         $user = $this->Auth->user(); 
          $post = $this->Post->findById($id);
          if (!$post) {
              throw new NotFoundException(__('編集できません'));
          }
-         
+        
+         $user = $this->Auth->user(); 
          if ($post['Post']['user_id'] !== $user['id']) {
              $this->Session->setFlash(__('編集できません'));
              return $this->redirect(array('controller' => 'posts', 'action' => 'index'));   
@@ -166,23 +173,5 @@ class PostsController extends AppController {
                 )
             );
         }
-    }
- 
-    public function search() {
-        // 検索条件設定  
-        $this->Prg->commonProcess();
-        if (isset($this->passedArgs['search_word'])) {
-            //条件を生成
-            $conditions = $this->Post->parseCriteria($this->passedArgs);
- 
-            $this->paginate = array(  
-                'conditions' => $conditions,  
-                'limit' => 30,
-                'order' => array(
-                'id' => 'desc'
-                )
-            );
-            $this->set('data', $this->paginate('Post'));
-        }  
     }
 } 
