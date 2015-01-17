@@ -40,33 +40,31 @@
 	<div id="container">
 		<div id="header">
            <nav class="navbar navbar-fixed-top">
-                <div id="navbar-inner">
-                    <div class="container">
+                <div id="navbar-header">
                     <?php
                         if($user) {
                             echo $this->Html->link(
                                 'ログアウト',
                                  array('controller' => 'users', 'action' => 'logout'),
-                                 array('class' => 'navbar active' )
+                                 array('class' => 'navbar-brand')
                              );
-                            echo "<div class='navbar active'>";
+                            echo "<div class='navbar-brand'>";
                             echo sprintf("ようこそ %s さん", $user['username']);
                             echo "</div>";
                         } else {
                             echo $this->Html->link(
                                 'ログイン',
                                  array('controller' => 'users', 'action' => 'login'),
-                                 array('class' => 'navbar active')
+                                 array('class' => 'navbar-brand')
                             );
                             echo $this->Html->link(
                                 '新規登録',
                                 array('controller' => 'users', 'action' => 'add'),
-                                array('class' => 'navbar active')
+                                array('class' => 'navbar-brand')
                             );
                         }
                     echo "<br />";
                     ?>
-                    </div>
                 </div>
             </nav> 
 
