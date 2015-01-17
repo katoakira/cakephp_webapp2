@@ -37,7 +37,7 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'posts', 'action' => 'index', 'home'),
-             'authorize' => array('Controller') // この行を追加しました
+            'authorize' => array('Controller') 
         )
     );
 
@@ -57,7 +57,7 @@ class AppController extends Controller {
          if(isset($user)) {
              return true;
          }
-         // デフォルトは拒否
+
          return false;
      } 
 }

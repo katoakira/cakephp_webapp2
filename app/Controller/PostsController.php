@@ -4,8 +4,6 @@ class PostsController extends AppController {
  
      public $components = array('Search.Prg'); 
 
-     public $presetVars = true; 
-  
      public $uses = array('Post', 'User', 'Category', 'Comment');
  
      public $paginate = array( 

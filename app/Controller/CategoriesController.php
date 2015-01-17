@@ -4,7 +4,7 @@ class CategoriesController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 	public function index() {
-        $this->set('category', $this->Category->find('all'));
+        $this->set('categories', $this->Category->find('all'));
 	}
 
 	public function view($id = null) {
