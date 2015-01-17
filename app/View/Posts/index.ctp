@@ -83,8 +83,13 @@ echo debug($data);
     <?php endforeach; ?>
     <?php unset($post); ?>
 </table>
-<div class="paginateLinks">
-<?php echo $this->Paginator->prev(); ?>&nbsp;
-<?php echo $this->Paginator->numbers(); ?>&nbsp;
-<?php echo $this->Paginator->next(); ?>
-</div>
+<?php 
+    echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
+    echo $this->Paginator->numbers(array('separator' => '')); 
+    echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
+?>
+<?php
+     echo $this->Paginator->counter(array('format' => '全%count%件' ));
+     echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
+?>
+

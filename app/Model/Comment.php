@@ -19,7 +19,7 @@ class Comment extends AppModel {
         'body' => array(
             'required' => array(
                 'rule' => 'notEmpty',
-                'message' => '文字を入力してください'
+                'message' => 'コメントを入力してください'
             )
         )
     );  

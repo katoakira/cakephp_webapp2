@@ -1,7 +1,6 @@
 <?php 
 App::uses('AppModel', 'Model');
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
-
 class User extends AppModel {
     public $hasMany = array(
         'Post' => array(
@@ -19,6 +18,12 @@ class User extends AppModel {
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'ユーザー名を入力してください'
+            )
+        ),
+        'email' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'Eメールを入力してください'
             )
         ),
         'password' => array(

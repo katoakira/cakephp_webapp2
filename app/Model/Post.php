@@ -43,22 +43,10 @@ class Post extends AppModel {
                'message' => 'タイトルを入力してください'
             )
         ),
-       'name' => array(
-           'required' => array(
-               'rule' => 'notEmpty',
-               'message' => '名前を入力してください'
-           )
-       ),
        'body' => array(
            'required' => array(
                'rule' => 'notEmpty',
                'message' => '文字を入力してください'
-           )
-       ),
-       'due_date' => array(
-           'required' => array(
-             'rule' => 'notEmpty',
-             'message' => '掲載終了日時をを入力してください'
            )
        ),
        'price' => array(
@@ -83,7 +71,6 @@ class Post extends AppModel {
     );
 
     public function WordSearch($data = array()) {
-        $this->log( $data );    
         $keyword = mb_convert_kana($data['search_word'], "s", "UTF-8");
         $keywords = explode(' ', $keyword);
     
@@ -108,7 +95,6 @@ class Post extends AppModel {
                    array_push($conditions['AND'], $condition);
                }
         }
-        $this->log( $conditions );
         return $conditions;
     }
 }
