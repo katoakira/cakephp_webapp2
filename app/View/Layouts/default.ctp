@@ -42,30 +42,35 @@
            <nav class="navbar navbar-fixed-top">
                 <div id="navbar-inner">
                     <div class="container">
-                    <?php
-                        if($user) {
-                            echo $this->Html->link(
-                                'ログアウト',
-                                 array('controller' => 'users', 'action' => 'logout'),
-                                 array('class' => 'navbar active' )
-                             );
-                            echo "<div class='navbar active'>";
-                            echo sprintf("ようこそ %s さん", $user['username']);
-                            echo "</div>";
-                        } else {
-                            echo $this->Html->link(
-                                'ログイン',
-                                 array('controller' => 'users', 'action' => 'login'),
-                                 array('class' => 'navbar active')
-                            );
-                            echo $this->Html->link(
-                                '新規登録',
-                                array('controller' => 'users', 'action' => 'add'),
-                                array('class' => 'navbar active')
-                            );
-                        }
-                    echo "<br />";
-                    ?>
+                        <ul class="nav">
+                        <?php
+                                if($user) {
+                                echo "<li class='active'>";
+                                echo $this->Html->link(
+                                    'ログアウト',
+                                     array('controller' => 'users', 'action' => 'logout'),
+                                     array('class' => '' )
+                                 );
+                                echo "</li>";
+                                echo "<li class=''divider-vertical></li>";
+                                echo "<li>";
+                                echo sprintf("ようこそ %s さん", $user['username']);
+                                echo "</li>";
+                            } else {
+                                echo $this->Html->link(
+                                    'ログイン',
+                                     array('controller' => 'users', 'action' => 'login'),
+                                     array('class' => 'navbar active')
+                                );
+                                echo $this->Html->link(
+                                    '新規登録',
+                                    array('controller' => 'users', 'action' => 'add'),
+                                    array('class' => 'navbar active')
+                                );
+                            }
+                        echo "<br />";
+                        ?>
+                        </ul>
                     </div>
                 </div>
             </nav> 
