@@ -1,18 +1,35 @@
 <?php
 App::uses('AppController', 'Controller');
 class CategoriesController extends AppController {
-	public $components = array('Paginator', 'Session');
+    public $helpers = array('Html', 'Form', 'Session'); 
+
+    public $components = array('Paginator', 'Session');
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'edit', 'delete'); 
+    }
 
 	public function index() {
         $this->set('categories', $this->Category->find('all'));
 	}
 
 	public function view($id = null) {
-		if (!$this->Category->exists($id)) {
+		if (!$id) {
 			throw new NotFoundException(__('無効なカテゴリー'));
-		}
-		$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
-		$this->set('category', $this->Category->find('first', $options));
+        }
+
+        $category = $this->Category->findById($id);
+        if(!$category) {
+           throw new NotFoundException(__('無効なカテゴリー'));
+        }
+
+        $category = $this->Category->findById($id);
+        if(!$category) {
+            throw new NotFoundException(__('無効なカテゴリー'));
+        }
+
+        $this->set('category', $category);
 	}
 
 	public function add() {
@@ -28,33 +45,37 @@ class CategoriesController extends AppController {
 	}
 
 	public function edit($id = null) {
-		if (!$this->Category->exists($id)) {
+		if (!$id) {
 			throw new NotFoundException(__('無効なカテゴリー'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
+        }
+
+        $category = $this->Category->findById($id);    
+        $this->set('category', $category);
+        if ($this->request->is(array('post', 'put'))) {
+            $this->Category->id = $id;
 			if ($this->Category->save($this->request->data)) {
 				$this->Session->setFlash(__('カテゴリーを編集しました'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('カテゴリーを編集できません。もう一度入力してください。'));
 			}
-		} else {
-			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
-			$this->request->data = $this->Category->find('first', $options);
-		}
+        }
+
+        if(!$this->request->data) {
+            $this->request->data = $category;
+        }
 	}
 
-	public function delete($id = null) {
-		$this->Category->id = $id;
-		if (!$this->Category->exists()) {
-			throw new NotFoundException(__('無効なカテゴリー'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Category->delete()) {
-            $this->Session->setFlash(__('カテゴリーを削除しました'));
-            $this->redirect(array('action' => 'index'));
-		} else {
-            $this->Session->setFlash(__('カテゴリーを削除できません。もう一度入力してください。'));
-		}
+    public function delete($id = null) {
+        if($this->request->is('get')) {
+           throw new MethodNotAllowedException();
+        }
+        
+        $category = $this->Category->findById($id);
+        if ($this->Category->delete($id)) {
+            $this->Session->setFlash(__('削除しました'));
+            return $this->redirect(array('action' => 'index'));
+        }
+            $this->Session->setFlash(__('削除できません'));
 	}
 }

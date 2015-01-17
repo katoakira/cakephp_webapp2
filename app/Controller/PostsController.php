@@ -27,10 +27,8 @@ class PostsController extends AppController {
      } 
  
      public function index() {
-         // 検索条件設定
          $this->Prg->commonProcess();
          if (isset($this->passedArgs['search_word'])) {
-             //条件を生成
              $conditions = $this->Post->parseCriteria($this->passedArgs);
              $this->set('conditions', $conditions);             
              $this->paginate = array(
@@ -42,8 +40,6 @@ class PostsController extends AppController {
                      'conditions' => $conditions 
                  )
              );
-             $this->set('data', $this->paginate('Post'));
-             $this->set('passedArgs', $this->passedArgs['search_word']);
          }
         
          $this->set('posts', $this->paginate());
@@ -169,20 +165,12 @@ class PostsController extends AppController {
         $post = $this->Post->findById($id);
         if ($post['Post']['user_id'] !== $user['id']) {
             $this->Session->setFlash(__('編集できません'));
-            return $this->redirect(array(
-                'controller' => 'posts',
-                'action' => 'index'
-                )
-            );
+            return $this->redirect(array('controller' => 'posts','action' => 'index'));
         }
  
         if ($this->Post->delete($id)) {
             $this->Session->setFlash(__('削除しました'));
-            return $this->redirect(array(
-                'controller' => 'posts',
-                'action' => 'index'
-                )
-            );
+            return $this->redirect(array('controller' => 'posts','action' => 'index'));
         }
     }
 } 
