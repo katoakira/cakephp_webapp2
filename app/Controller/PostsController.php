@@ -164,7 +164,7 @@ class PostsController extends AppController {
         $user = $this->Auth->user();
         $post = $this->Post->findById($id);
         if ($post['Post']['user_id'] !== $user['id']) {
-            $this->Session->setFlash(__('編集できません'));
+            $this->Session->setFlash(__('削除できません'));
             return $this->redirect(array('controller' => 'posts','action' => 'index'));
         }
  

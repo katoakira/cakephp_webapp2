@@ -1,8 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
 class Post extends AppModel {
-    
-    public $name = 'Post';
 
     public $actsAs = array(
         'Search.Searchable',
@@ -61,7 +59,6 @@ class Post extends AppModel {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
 
-    // 検索対象のフィルタ設定
     public $filterArgs = array(
         array(
             'name' => 'search_word',
