@@ -11,7 +11,7 @@ class PostsController extends AppController {
      public $paginate = array( 
          'Post' => array(
              'order' => array(
-                 'modified' => 'DESC' 
+                 'modified' => 'asc' 
              ),
              'limit' => 30
          )
@@ -29,30 +29,27 @@ class PostsController extends AppController {
      } 
  
      public function index() {
-         $this->Post->recursive = 0;
-         $this->set($this->paginate());
-         $this->set('posts', $this->Post->find('all'));
-         $this->set('categories', $this->Category->find('all'));
-        
          // 検索条件設定
          $this->Prg->commonProcess();
          if (isset($this->passedArgs['search_word'])) {
              //条件を生成
              $conditions = $this->Post->parseCriteria($this->passedArgs);
-                          
+             $this->set('conditions', $conditions);             
              $this->paginate = array(
                  'Post' => array(
-                     'conditions' => $conditions,  
                      'limit' => 30,
                      'order' => array(
-                         'id' => 'desc'
-                     )
+                         'modified' => 'asc'
+                     ),
+                     'conditions' => $conditions 
                  )
              );
-             $this->set('posts', $this->paginate('Post'));
+             $this->set('data', $this->paginate('Post'));
              $this->set('passedArgs', $this->passedArgs['search_word']);
-             $this->set('conditions', $conditions);
          }
+        
+         $this->set('posts', $this->paginate());
+         $this->set('categories', $this->Category->find('all'));
      }
  
      public function categoryIndex($id = null) {

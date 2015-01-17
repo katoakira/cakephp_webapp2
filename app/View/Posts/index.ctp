@@ -1,6 +1,7 @@
 <?php echo debug($passedArgs);
       echo debug($conditions);
 echo debug($posts);
+echo debug($data);
        ?> 
 <!-- 商品一覧TOP -->
 <h1>TOP</h1>
