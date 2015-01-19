@@ -9,7 +9,7 @@
                     array(
                         'class' => 'form-control',
                         'label' => 'ユーザー名',
-                        'placeholder' => 'ユーザー名'
+                        'placeholder' => 'ユーザー名を入力してください'
                     )
                 );
             ?>
@@ -20,20 +20,19 @@
                     array(
                         'class' => 'form-control',
                         'label' => 'パスワード',
-                        'placeholder' => 'パスワード'
+                        'placeholder' => 'パスワードを入力してください'
                     )
                 ); 
             ?>
         </div>
     </fieldset>
-    <div class="btn-group">
     <?php echo $this->Form->submit('ログイン', array('class' => 'btn btn-primary')); ?>
+    <?php echo $this->Form->end(); ?>
+</div>
     <?php
              echo $this->Html->link('戻る',
                  array('controller' => 'posts', 'action' => 'index'),
-                 array('class' => 'btn btn-primary btn-lg pull-right')
+                 array('class' => 'btn btn-primary')
              );
     ?>
-    </div>
-    <?php echo $this->Form->end(); ?> 
-</div>
+

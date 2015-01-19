@@ -11,7 +11,13 @@
 <hr>
 
 <?php
-    echo $this->Form->create('Post', array('controller' => 'posts', 'action' => 'index', 'type' => 'post'));
+    echo $this->Form->create('Post',
+        array(
+            'controller' => 'posts',
+            'action' => 'index',
+            'type' => 'post'
+        )
+    );
     echo $this->Form->input('search_word', array('label' => false, 'div' => false));
     echo $this->Form->end('検索'); 
 ?>
