@@ -39,36 +39,54 @@
 <body style="padding-top: 70px;">
 	<div id="container">
 		<div id="header">
-           <nav class="navbar navbar-fixed-top">
+           <nav class="navbar navbar-fixed-top" role="navigation">
                 <div id="navbar-header">
-                    <?php
-                        if($user) {
-                            echo $this->Html->link(
-                                'ログアウト',
-                                 array('controller' => 'users', 'action' => 'logout'),
-                                 array('class' => 'navbar-brand')
-                             );
-                            echo "<div class='navbar-brand'>";
-                            echo sprintf("ようこそ %s さん", $user['username']);
-                            echo "</div>";
-                        } else {
-                            echo $this->Html->link(
-                                'ログイン',
-                                 array('controller' => 'users', 'action' => 'login'),
-                                 array('class' => 'navbar-brand')
-                            );
-                            echo $this->Html->link(
-                                '新規登録',
-                                array('controller' => 'users', 'action' => 'add'),
-                                array('class' => 'navbar-brand')
-                            );
-                        }
-                    echo "<br />";
-                    ?>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".target">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">WebApp</a>
+                </div>
+                <div class="collapse in navbar-collapse target">
+                    <ul class="nav navbar-nav navbar-right">
+                    <?php if($user): ?>
+                        <li>
+                            <?php
+                                echo $this->Html->link(
+                                    'ログアウト',
+                                    array('controller' => 'users', 'action' => 'logout')
+                                );
+                            ?>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <?php echo sprintf("ようこそ %s さん", $user['username']); ?>
+                            </a>
+                        </li>
+                        <?php else: ?>
+                        <li>
+                            <?php
+                                echo $this->Html->link(
+                                    'ログイン',
+                                    array('controller' => 'users', 'action' => 'login')
+                                );
+                            ?>
+                        </li>
+                        <li>
+                            <?php
+                                echo $this->Html->link(
+                                    '新規登録',
+                                    array('controller' => 'users', 'action' => 'add')
+                                );
+                            ?>
+                        </li>
+                    <?php endif;?>
+                    </ul>                    
                 </div>
             </nav> 
+        </div>
 
-		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
