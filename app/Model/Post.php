@@ -12,7 +12,7 @@ class Post extends AppModel {
                     'small' => '120x120',
                     'thumb' => '80x80'
                 ),
-                'default_url' => ':webroot/img/noimage.jpg' 
+              //  'default_url' => ':webroot/img/noimage.jpg' 
             )
         ),
     );
