@@ -11,7 +11,7 @@ class PostsController extends AppController {
              'order' => array(
                  'modified' => 'asc' 
              ),
-             'limit' => 30
+             'limit' => 10
          )
      );
  
@@ -24,6 +24,7 @@ class PostsController extends AppController {
          }
  
          return parent::isAuthorized($user);
+
      } 
  
      public function index() {
@@ -33,7 +34,7 @@ class PostsController extends AppController {
              $this->set('conditions', $conditions);             
              $this->paginate = array(
                  'Post' => array(
-                     'limit' => 30,
+                     'limit' => 10,
                      'order' => array(
                          'modified' => 'asc'
                      ),
@@ -44,9 +45,11 @@ class PostsController extends AppController {
         
          $this->set('posts', $this->paginate());
          $this->set('categories', $this->Category->find('all'));
+
      }
  
-     public function categoryIndex($id = null) {
+     public function categoryIndex
+         ($id = null) {
          if (!$id) {
              throw new NotFoundException(__('閲覧できません'));
          }
