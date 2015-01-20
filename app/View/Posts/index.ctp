@@ -58,11 +58,12 @@
                     ?>
                 </div>
             </h2>
-                <hr>                
-                <?php foreach ($posts as $post): ?>
-                <ul style="list-style: none;" class="thumbnails">
+            <hr>                
+            <?php foreach ($posts as $post): ?>
+                <ul style="list-style: none;" class="thumbnails disp-inBlock">
                     <div class="col-sm-6 thumbnail">
-                            <li style="text-align: center">
+                            <li style="text-align: center;">
+                            <strong>
                                 <?php
                                     echo $this->Html->link(
                                         $post['Post']['title'],
@@ -72,7 +73,8 @@
                                                 $post['Post']['id']
                                             )
                                         );
-                                ?>
+?>
+                            </strong>
                             </li> 
                         <div class="col-sm-6">
                             <li>
@@ -103,8 +105,8 @@
                         </div>
                     </div>
                 </ul>
-                <?php endforeach; ?>
-                <?php unset($post); ?>
+            <?php endforeach; ?>
+            <?php unset($post); ?>
 
             <br clear="all">
 
