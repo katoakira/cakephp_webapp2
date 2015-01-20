@@ -27,7 +27,15 @@
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
 
         // Twitter Bootstrap 3.0 CDN
-        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
+        echo $this->Html->css(
+            '//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css'
+       //     'bootstrap-theme.css',
+       //     'bootstrap-theme.css.map',
+       //     'bootstrap.css',
+       //     'bootstrap.min.css',
+       //     'bootstrap-theme.min.css',
+       //     'bootstrap.css.map'
+        );
         echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
 
 
@@ -41,50 +49,33 @@
 		<div id="header">
            <nav class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
-                   <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">WebApp</a>
                 </div>
-                <div class="collapse navbar-collapse">-->
+                <div class="navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                    <?php if($user): ?>
-                        <li>
-                            <?php
-                                echo $this->Html->link(
-                                    'ログアウト',
-                                    array('controller' => 'users', 'action' => 'logout')
-                                );
-                            ?>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <?php echo sprintf("ようこそ %s さん", $user['username']); ?>
-                            </a>
-                        </li>
+                        <?php if($user): ?>
+                            <li>
+                                <?php echo $this->Html->link('ログアウト', array('controller' => 'users', 'action' => 'logout')); ?>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li>
+                                <a href="#"><?php echo sprintf("ようこそ %s さん", $user['username']); ?></a>
+                            </li>
                         <?php else: ?>
-                        <li>
-                            <?php
-                                echo $this->Html->link(
-                                    'ログイン',
-                                    array('controller' => 'users', 'action' => 'login')
-                                );
-                            ?>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <?php
-                                echo $this->Html->link(
-                                    '新規登録',
-                                    array('controller' => 'users', 'action' => 'add')
-                                );
-                            ?>
-                        </li>
-                    <?php endif;?>
-                    </ul>                    
+                            <li>
+                                <?php echo $this->Html->link('ログイン', array('controller' => 'users', 'action' => 'login')); ?>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li>
+                                <?php echo $this->Html->link('新規登録', array('controller' => 'users', 'action' => 'add')); ?>
+                            </li>
+                        <?php endif; ?>
+                    </ul>     
                 </div>
             </nav> 
         </div>

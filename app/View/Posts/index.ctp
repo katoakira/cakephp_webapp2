@@ -1,6 +1,13 @@
 <!-- 商品一覧TOP -->
 <div class="container">
     <div class="row">
+        <div class="col-sm-12">
+            <h4>流れ</h4>
+            <p>１：出品</p>
+            <p>２：コメント欄で交渉</p>
+            <p>３：商品受け渡し</p>
+        </div>
+
         <div class="col-sm-2">
             <h3>カテゴリー一覧</h3>
             <ul class="list-group">
@@ -92,28 +99,28 @@
                     )
                 );
             ?>
+            <hr>
             <?php
                 echo $this->Form->create('Post',
                     array(
                         'controller' => 'posts',
                         'action' => 'index',
-                        'type' => 'post',
-                        'class' => 'form-inline'
+                        'type' => 'post'
                     )
                 );
             ?>
-            <div class="form-group">
-            <?php 
-                echo $this->Form->input('search_word', array(
-                    'label' => false,
-                    'placeholder' => '文字を入力してください',
-                    'class' => 'form-control'
-                    ));
-            ?>
+            <div class="input-group">
+                <?php 
+                    echo $this->Form->input('search_word', array(
+                        'label' => false,
+                        'placeholder' => '文字を入力してください',
+                        'class' => 'form-control'
+                        ));
+                ?>
+                <span class="input-group-btn">
+                   <?php echo $this->Form->submit('検索', array('class' => 'btn btn-primary')); ?>
+                </span>
             </div>
-            <?php
-                echo $this->Form->submit('検索', array('class' => 'btn btn-primary'));
-?>
             <?php echo $this->Form->end();?>
         </div>
     </div>
