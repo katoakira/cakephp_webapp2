@@ -1,5 +1,6 @@
+<div class="container">
 <h1><?php echo $category['Category']['name']; ?></h1>
-<table class="table table-striped table-borederd table-hover table-condensed">
+<table class="table table-striped table-bordered table-hover table-condensed">
     <tr>
         <th><?php echo $this->Paginator->sort('title', 'タイトル');?></th>
         <th>名前</th>
@@ -45,6 +46,8 @@
 </table> 
 <?php 
     echo $this->Html->link('戻る',
-        array('class' => 'btn btn-primary'),
-        array('action' => 'index'));
+        array('action' => 'index'),
+        array('class' => 'btn btn-primary')
+    );
 ?>
+</div>

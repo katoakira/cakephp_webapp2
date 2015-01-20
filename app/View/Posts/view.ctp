@@ -1,6 +1,6 @@
 <?php debug($post); debug($user); ?>
-<h1><?php echo h($post['Post']['title']); ?></h1>
 <div class="container">
+<h1><?php echo h($post['Post']['title']); ?></h1>
     <div class="row">
         <div class="col-sm-5">
             <p><?php echo $this->Upload->uploadImage($post['Post'], 'Post.img', array('style' => 'big')); ?></p>
@@ -13,7 +13,8 @@
         </div>
 
         <div class="col-sm-12">
-            <p>紹介文：<?php echo h($post['Post']['body']); ?></p>
+            <p>紹介文</p>
+            <p><?php echo h($post['Post']['body']); ?></p>
             <hr>
             <?php 
                 echo $this->Form->create('Comment',array(
@@ -38,7 +39,8 @@
                         <div class="popover left show" style="position: relative; max-width:100%;">
                         <div class="arrow"></div>
                            <p class="popover-title">
-                               <?php echo $comments['created']; ?>
+                           <small><?php echo $comments['created']; ?></small>
+                                By
                                <?php echo $comments['username']; ?>
                            </p>
                            <p class="popover-content"><?php echo $comments['body']; ?></p>
@@ -47,7 +49,8 @@
                          <div class="popover right show" style="position: relative; max-width:100%;">
                          <div class="arrow"></div>
                             <p class="popover-title">
-                                <?php echo $comments['created']; ?>
+                            <small><?php echo $comments['created']; ?></small>
+                                By
                                 <?php echo $comments['username']; ?>
                             </p>
                             <p class="popover-content"><?php echo $comments['body']; ?></p>

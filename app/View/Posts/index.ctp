@@ -89,27 +89,13 @@
                 echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
             ?>
             <?php
-                // echo $this->Paginator->counter(array('format' => '全%count%件' ));
-                // echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
+                 echo $this->Paginator->counter(array('format' => '全%count%件' ));
+                 echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
             ?>
             </div>
         </div>
 
         <div class="col-sm-2">
-            <?php
-                echo $this->Html->link(
-                    '出品',
-                    array(
-                        'controller' => 'posts',
-                        'action' => 'add'
-                    ),
-                    array(
-                        'class' => 'btn btn-primary',
-                        'style' => 'margin-bottom: 20px; margin-left: 10px'
-                    )
-                );
-            ?>
-            <hr>
             <?php
                 echo $this->Form->create('Post',
                     array(
@@ -132,6 +118,19 @@
                 </span>
             </div>
             <?php echo $this->Form->end();?>
+            <hr>
+            <?php
+                echo $this->Html->link(
+                    '出品',
+                    array(
+                        'controller' => 'posts',
+                        'action' => 'add'
+                    ),
+                    array(
+                        'class' => 'btn btn-warning',
+                    )
+                );
+            ?> 
         </div>
     </div>
 <!--</div>-->
