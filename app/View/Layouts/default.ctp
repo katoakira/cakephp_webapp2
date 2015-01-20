@@ -56,11 +56,15 @@
                     </button>
                     <a class="navbar-brand" href="#">WebApp</a>
                 </div>
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
+               <!-- <div class="navbar-collapse">-->
+                    <ul class="nav navbar-nav navbar-righti navbar-collapse">
                         <?php if($user): ?>
                             <li>
-                                <?php echo $this->Html->link('ログアウト', array('controller' => 'users', 'action' => 'logout')); ?>
+                                <?php
+                                    echo $this->Html->link('ログアウト', 
+                                        array('controller' => 'users', 'action' => 'logout')
+                                      );
+                                 ?>
                             </li>
                             <li class="divider-vertical"></li>
                             <li>
@@ -68,15 +72,23 @@
                             </li>
                         <?php else: ?>
                             <li>
-                                <?php echo $this->Html->link('ログイン', array('controller' => 'users', 'action' => 'login')); ?>
+                                <?php 
+                                    echo $this->Html->link('ログイン',
+                                        array('controller' => 'users', 'action' => 'login')
+                                    );
+                                 ?>
                             </li>
                             <li class="divider-vertical"></li>
                             <li>
-                                <?php echo $this->Html->link('新規登録', array('controller' => 'users', 'action' => 'add')); ?>
+                                <?php
+                                    echo $this->Html->link('新規登録', 
+                                        array('controller' => 'users', 'action' => 'add')
+                                    ); 
+                                ?>
                             </li>
                         <?php endif; ?>
                     </ul>     
-                </div>
+               <!-- </div> -->
             </nav> 
         </div>
 

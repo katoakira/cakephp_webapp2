@@ -1,5 +1,5 @@
 <!-- 商品一覧TOP -->
-<div class="container">
+<!--<div class="container">-->
     <div class="row">
         <div class="col-sm-12">
             <h4>流れ</h4>
@@ -124,4 +124,4 @@
             <?php echo $this->Form->end();?>
         </div>
     </div>
-</div>
+<!--</div>-->
