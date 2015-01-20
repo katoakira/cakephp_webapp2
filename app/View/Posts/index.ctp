@@ -59,7 +59,17 @@
                     <td><?php echo h($post['Category']['name']); ?></td>
                     <td>¥<?php echo h($post['Post']['price']); ?></td>
                     <td><?php echo h($post['Post']['modified']); ?></td>
-                    <td><?php echo $this->Upload->uploadImage($post['Post'],'Post.img', array('style' => 'thumb')); ?></td>
+                    <td>
+                        <?php
+                            echo $this->Upload->uploadImage($post['Post'],'Post.img',
+                                array('style' => 'thumb'),
+                                array('url' => array(
+                                    'controller' => 'posts',
+                                    'action' => 'view',
+                                    $post['Post']['id']))
+                            );
+                        ?>
+                    </td>
                     <td>
                         <?php echo $this->Form->postLink(
                             '削除',
