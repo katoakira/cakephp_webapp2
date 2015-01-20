@@ -21,7 +21,16 @@
         <td><?php echo $post['name']; ?></td>
         <td>¥<?php echo $post['price']; ?></td>
         <td><?php echo $post['modified']; ?></td>
-        <td><?php echo $this->Upload->uploadImage($post, 'Post.img', array('style' => 'thumb')); ?></td>
+        <td>
+            <?php echo $this->Upload->uploadImage($post, 'Post.img', 
+                      array('style' => 'thumb'),
+                      array('url' => array(
+                          'controller' => 'posts',
+                          'action' => 'view',
+                          $post['id']))
+                  );
+            ?>
+        </td>
         <td>
             <?php echo $this->Form->postLink(
                 '削除',
@@ -34,6 +43,8 @@
     <?php endforeach; ?>
     <?php unset($post); ?>
 </table> 
-<div class="pageLinks">
-    <p><?php echo $this->Html->link('戻る', array('action' => 'index')); ?></p>
-</div>
+<?php 
+    echo $this->Html->link('戻る',
+        array('class' => 'btn btn-primary'),
+        array('action' => 'index'));
+?>

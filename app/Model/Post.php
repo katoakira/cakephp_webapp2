@@ -8,11 +8,11 @@ class Post extends AppModel {
             'img' => array(
                  'path' => ':webroot/img/:id/:style.:extension',
                  'styles' => array(
-                    'big' => '400x200',
-                    'small' => '120x120',
-                    'thumb' => '80x80'
+                    'big' => '[500x250]',
+                    'small' => '[240x240]',
+                    'thumb' => '[160x160]'
                 ),
-              //  'default_url' => ':webroot/img/noimage.jpg' 
+                'default_url' => ':webroot/img/noimage.jpg' 
             )
         ),
     );
