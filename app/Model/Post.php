@@ -11,7 +11,8 @@ class Post extends AppModel {
                     'big' => '400x200',
                     'small' => '120x120',
                     'thumb' => '80x80'
-                )
+                ),
+                'default_url' => ':webroot/img/noimage.jpg' 
             )
         ),
     );
