@@ -35,15 +35,21 @@
             <ul style="list-style: none;">
                 <li>
                     <?php if($user['id'] == $comments['user_id']): ?>
-                        <div class="popover right show" style="position: relative; max-width:100%;">
+                        <div class="popover left show" style="position: relative; max-width:100%;">
                         <div class="arrow"></div>
-                           <p class="popover-title"><?php echo $comments['username']; ?></p>
+                           <p class="popover-title">
+                               <?php echo $comments['created']; ?>
+                               <?php echo $comments['username']; ?>
+                           </p>
                            <p class="popover-content"><?php echo $comments['body']; ?></p>
                         </div>
                     <?php else: ?>
-                         <div class="popover left show" style="position: relative; max-width:100%;">
+                         <div class="popover right show" style="position: relative; max-width:100%;">
                          <div class="arrow"></div>
-                            <p class="popover-title"><?php echo $comments['username']; ?></p>
+                            <p class="popover-title">
+                                <?php echo $comments['created']; ?>
+                                <?php echo $comments['username']; ?>
+                            </p>
                             <p class="popover-content"><?php echo $comments['body']; ?></p>
                          </div>
                     <?php endif; ?>

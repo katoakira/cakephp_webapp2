@@ -18,12 +18,20 @@ class User extends AppModel {
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'ユーザー名を入力してください'
+            ),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'message' => 'このユーザー名は既に登録されています'
             )
         ),
         'email' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'Eメールを入力してください'
+            ),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'message' => 'このEメールアドレスは既に登録されています'
             )
         ),
         'password' => array(

@@ -5,10 +5,10 @@
     echo $this->Form->create('User',array(
         'inputDefaults' => array(
             'div' => 'form-group',
-            'wrapInput' => 'false',
+            'wrapInput' => false,
             'class' => 'form-control'
         ),
-        'class' => 'well form-horizontal'
+        'class' => 'form-horizontal'
     ));
 ?>
     <fieldset>
@@ -17,7 +17,7 @@
                 echo $this->Form->input('username',
                     array(
                         'label' => 'ユーザー名',
-                        'placeholder' => 'ユーザー名'
+                        'placeholder' => 'ユーザー名を入力してください'
                     )
                 );
             ?>
@@ -25,19 +25,18 @@
                 echo $this->Form->input('password',
                     array(
                         'label' => 'パスワード',
-                        'placeholder' => 'パスワード'
+                        'placeholder' => 'パスワードを入力してください'
                     )
                 );
             ?>
     </fieldset>
-    <div class="btn-group">
-    <?php echo $this->Form->submit('ログイン', array('class' => 'btn btn-primary')); ?>              
+    <?php echo $this->Form->submit('ログイン', array('class' => 'btn btn-primary pull-left')); ?>              
     <?php
          echo $this->Html->link('戻る',
              array('controller' => 'posts', 'action' => 'index'),
-             array('class' => 'btn btn-primary')
+             array('class' => 'btn btn-primary pull-right')
          );
      ?>
     <?php echo $this->Form->end(); ?>
-    </div>
+</div>
 </div>
