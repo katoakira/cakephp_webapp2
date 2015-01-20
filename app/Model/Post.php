@@ -8,7 +8,7 @@ class Post extends AppModel {
             'img' => array(
                  'path' => ':webroot/img/:id/:style.:extension',
                  'styles' => array(
-                    'big' => '200x200',
+                    'big' => '400x200',
                     'small' => '120x120',
                     'thumb' => '80x80'
                 )
