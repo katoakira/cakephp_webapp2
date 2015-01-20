@@ -30,58 +30,55 @@
 
         <div class="col-sm-8">
             <h2>商品一覧</h2>
-            <table class="table table-striped table-bordered table-hover table-condensed">
-                <tr>
-                    <th><?php echo $this->Paginator->sort('Post.title', 'タイトル'); ?></th>
-                    <th><?php echo $this->Paginator->sort('Post.name', '投稿者名'); ?></th>
-                    <th>カテゴリー名</th>
-                    <th><?php echo $this->Paginator->sort('Post.price', '価格'); ?></th>
-                    <th><?php echo $this->Paginator->sort('Post.modified', '最終更新日時'); ?></th>
-                    <th>イメージ</th>
-                    <th>アクション</th>
-                </tr>
-            
+                <p>
+                    <?php echo $this->Paginator->sort('Post.title', 'タイトル'); ?>
+                    <?php echo $this->Paginator->sort('Post.name', '投稿者名'); ?>
+                    <?php echo $this->Paginator->sort('Post.price', '価格'); ?>
+                    <?php echo $this->Paginator->sort('Post.modified', '最終更新日時'); ?>
+                </p>                
                 <?php foreach ($posts as $post): ?>
-                <tr>
-                    <td>
-                        <?php 
-                            echo $this->Html->link(
-                                $post['Post']['title'],
-                                    array(
+                <ul style="list-style: none;" class="thumbnails">
+                    <div class="col-sm-6 thumbnail">
+                        <li>
+                           <?php
+                                echo $this->Upload->uploadImage($post['Post'],'Post.img',
+                                    array('style' => 'thumb'),
+                                    array('url' => array(
                                         'controller' => 'posts',
                                         'action' => 'view',
-                                        $post['Post']['id']
-                                    )
+                                        $post['Post']['id']))
                                 );
-                        ?>
-                    </td>
-                    <td><?php echo h($post['Post']['name']); ?></td>
-                    <td><?php echo h($post['Category']['name']); ?></td>
-                    <td>¥<?php echo h($post['Post']['price']); ?></td>
-                    <td><?php echo h($post['Post']['modified']); ?></td>
-                    <td>
-                        <?php
-                            echo $this->Upload->uploadImage($post['Post'],'Post.img',
-                                array('style' => 'thumb'),
-                                array('url' => array(
-                                    'controller' => 'posts',
-                                    'action' => 'view',
-                                    $post['Post']['id']))
-                            );
-                        ?>
-                    </td>
-                    <td>
-                        <?php echo $this->Form->postLink(
-                            '削除',
-                            array('action' => 'delete', $post['Post']['id']),
-                            array('confirm' => '削除してもよろしいですか？'));
-                        ?>
-                        <?php echo $this->Html->link('編集', array('action' => 'edit', $post['Post']['id'])); ?>
-                   </td>  
-                </tr>
+                            ?> 
+                        </li>
+                        <li>
+                            <?php 
+                                echo $this->Html->link(
+                                    $post['Post']['title'],
+                                        array(
+                                            'controller' => 'posts',
+                                            'action' => 'view',
+                                            $post['Post']['id']
+                                        )
+                                    );
+                            ?>
+                        </li> 
+                        <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
+                        <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
+                        <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
+                        <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
+                        <li>    
+                            <?php echo $this->Form->postLink(
+                                '削除',
+                                array('action' => 'delete', $post['Post']['id']),
+                                array('confirm' => '削除してもよろしいですか？'));
+                            ?>
+                            <?php echo $this->Html->link('編集', array('action' => 'edit', $post['Post']['id'])); ?>
+                        </li>
+                    </div>
+                </ul>
                 <?php endforeach; ?>
                 <?php unset($post); ?>
-            </table>
+            <hr>
             <div class="pagination">
             <?php 
                 echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
