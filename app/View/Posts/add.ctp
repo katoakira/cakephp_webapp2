@@ -36,7 +36,7 @@
 </div>
 <div class="form-group"> 
 <?php 
-    echo $this->Form->input('place' array(
+    echo $this->Form->input('place',array(
         'placeholder' => '取引場所を入力してください',
         'label' => '取引場所',
         'class' => 'form-control'

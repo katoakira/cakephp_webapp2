@@ -48,19 +48,18 @@ class PostsController extends AppController {
 
      }
  
-     public function categoryIndex
-         ($id = null) {
+     public function categoryIndex($id = null) {
          if (!$id) {
              throw new NotFoundException(__('閲覧できません'));
          }
-         $this->set($this->paginate());
+         $this->set($this->paginate(array(
+             'Post.category_id' => $id)));
          $category = $this->Category->findById($id);  
          if(!$category) {
              throw new NotFoundException(__('閲覧できません'));
          }
  
-         $this->set('category', $category);
- 
+         $this->set('category', $category); 
      }
  
      public function view($id = null) {

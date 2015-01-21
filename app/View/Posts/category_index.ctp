@@ -65,6 +65,7 @@
             <div class="col-sm-7" style="text-align: left"> 
                 <li><h4>投稿者名：<?php echo $post['name']; ?></h4></li>
                 <li><h4>価格：<?php echo $post['price']; ?>円</h4></li>
+                <li><h4>取引場所：<?php echo $post['place']; ?></h4></li>
                 <li><h4>最終更新日時：<?php echo $post['modified']; ?></h4></li>
                 <li><h4>紹介文</h4></li>
                 <li style="height: 50%; overflow: hidden;"><h4><?php echo $post['body']; ?></h4></li>
