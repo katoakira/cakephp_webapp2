@@ -92,65 +92,65 @@
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
                     <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <li>
-                                <?php
-                                     echo $this->Form->postLink(
-                                         '削除',
-                                         array('action' => 'delete', $post['Post']['id']),
-                                         array(
-                                             'confirm' => '削除してもよろしいですか？',
-                                             'class' => 'btn btn-danger'
-                                         )
-                                     );
-                                ?>
-                                <?php
-                                    echo $this->Html->link(
-                                       '編集',
-                                       array('action' => 'edit', $post['Post']['id']),
-                                       array('class' => ' btn btn-success')
-                                    );
-                                ?>
-                            </li>
-                            <li class="divider-vertical"></li>
-                            <li style="text-align: center; height: 60px; overflow: hidden">
-                                <strong>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <li>
                                     <?php
                                         echo $this->Html->link(
-                                            $post['Post']['title'],
-                                                array(
-                                                    'controller' => 'posts',
-                                                    'action' => 'view',
-                                                    $post['Post']['id']
-                                                )
-                                            );
+                                           '編集',
+                                           array('action' => 'edit', $post['Post']['id']),
+                                           array('class' => ' btn btn-success')
+                                        );
                                     ?>
-                                </strong>
-                            </li> 
+                                    <?php
+                                         echo $this->Form->postLink(
+                                             '削除',
+                                             array('action' => 'delete', $post['Post']['id']),
+                                             array(
+                                                 'confirm' => '削除してもよろしいですか？',
+                                                 'class' => 'btn btn-danger'
+                                             )
+                                         );
+                                    ?>
+                                </li>
+                                <li class="divider-vertical"></li>
+                                <li style="text-align: center; height: 90px; overflow: hidden">
+                                    <h4>
+                                        <?php
+                                            echo $this->Html->link(
+                                                $post['Post']['title'],
+                                                    array(
+                                                        'controller' => 'posts',
+                                                        'action' => 'view',
+                                                        $post['Post']['id']
+                                                    )
+                                                );
+                                        ?>
+                                    </h4>
+                                </li> 
+                            </div>
+                            <div class="col-sm-5">
+                                <li>
+                                   <?php
+                                        echo $this->Upload->uploadImage($post['Post'],'Post.img',
+                                            array('style' => 'thumb'),
+                                            array('url' => array(
+                                                'controller' => 'posts',
+                                                'action' => 'view',
+                                                $post['Post']['id']))
+                                        );
+                                    ?> 
+                                </li>
+                            </div>
+                            <div class="col-sm-7" style="overflow: hidden">
+                                <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
+                                <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
+                                <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
+                                <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
+                                <li>紹介文</li>
+                                <li style="overflow: hidden"><?php echo h($post['Post']['body']); ?></li> 
+                            </div>
                         </div>
-                        <div class="col-sm-5">
-                            <li>
-                               <?php
-                                    echo $this->Upload->uploadImage($post['Post'],'Post.img',
-                                        array('style' => 'thumb'),
-                                        array('url' => array(
-                                            'controller' => 'posts',
-                                            'action' => 'view',
-                                            $post['Post']['id']))
-                                    );
-                                ?> 
-                            </li>
-                        </div>
-                        <div class="col-sm-7" style="overflow: hidden">
-                            <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
-                            <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
-                            <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
-                            <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
-                            <li>紹介文</li>
-                            <li style="overflow: hidden"><?php echo h($post['Post']['body']); ?></li> 
-                        </div>
-                    </div>
                     </div>
                 </ul>
             <?php endforeach; ?>

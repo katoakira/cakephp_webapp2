@@ -19,9 +19,28 @@
     <hr>
     <?php foreach($category['Post'] as $post): ?>
     <ul style="list-style: none;" class="thumbnails dist-inBlock">
-        <div class="col-sm-12 thumbnail" style="text-align: center; height: 100%; width: 100%">
+        <div class="col-sm-12 thumbnail" style="text-align: left; height: 100%; width: 100%">
             <div class="col-sm-12">
-            <li style="height: 90px; overflow: hidden">
+            <li>
+                <?php
+                    echo $this->Form->postLink(
+                         '削除',
+                         array('action' => 'delete', $post['id']),
+                         array(
+                             'confirm' => '削除してもよろしいですか',
+                             'class' => 'btn btn-danger pull-right'
+                         )
+                     );
+                ?>
+                <?php
+                    echo $this->Html->link(
+                         '編集',
+                         array('action' => 'edit', $post['id']),
+                         array('class' => 'btn btn-success pull-right')
+                    );
+                ?>
+            </li>
+            <li style="height: 90px; overflow: hidden">               
                <h2>
                   <?php 
                        echo $this->Html->link($post['title'],
@@ -49,25 +68,6 @@
                 <li><h4>最終更新日時：<?php echo $post['modified']; ?></h4></li>
                 <li><h4>紹介文</h4></li>
                 <li style="height: 50%; overflow: hidden;"><h4><?php echo $post['body']; ?></h4></li>
-                <li>
-                    <?php
-                        echo $this->Form->postLink(
-                             '削除',
-                             array('action' => 'delete', $post['id']),
-                             array(
-                                 'confirm' => '削除してもよろしいですか',
-                                 'class' => 'btn btn-danger pull-right'
-                             )
-                         );
-                    ?>
-                    <?php
-                        echo $this->Html->link(
-                             '編集', 
-                             array('action' => 'edit', $post['id']),
-                             array('class' => 'btn btn-success pull-right')
-                        );
-                    ?>
-                </li>
             </div>
         </div>
     </ul>
