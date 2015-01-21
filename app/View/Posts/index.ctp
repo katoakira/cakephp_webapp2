@@ -114,8 +114,8 @@
                                          );
                                     ?>
                                 </li>
-                                <li style="text-align: center; height: 90px; overflow: hidden; text-overflow: ellipsis">
-                                   <h4>
+                                <li style="">
+                                   <h4 style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                        <?php
                                            echo $this->Html->link(
                                                $post['Post']['title'],
