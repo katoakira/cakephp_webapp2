@@ -149,7 +149,7 @@
                                 <li>取引場所：<?php echo h($post['Post']['place']); ?></li>
                                 <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
                                 <li>紹介文</li>
-                                <li style="height: 20px; width: auto; text-overflow: ellipsis; overflow: hidden;"><?php echo h($post['Post']['body']); ?></li> 
+                                <li style="height: 100%; overflow: hidden; white-space: nowrap; width: 100%; text-overflow: ellipsis;"><?php echo h($post['Post']['body']); ?></li> 
                             </div>
                         </div>
                     </div>
