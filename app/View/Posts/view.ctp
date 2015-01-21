@@ -65,13 +65,13 @@
             <?php 
                 echo $this->Html->link( $post['Category']['name'] . 'へ戻る', 
                     array('controller' => 'posts', 'action' => 'categoryIndex', $post['Category']['id']),
-                    array('class' => 'btn btn-primary')
+                    array('class' => 'btn btn-primary pull-right')
                 );
             ?>
             <?php 
                 echo $this->Html->link('TOPへ戻る',
                     array('controller' => 'posts', 'action' => 'index'),
-                    array('class' => 'btn btn-primary')
+                    array('class' => 'btn btn-primary pull-right')
                 );
             ?>
         </div>

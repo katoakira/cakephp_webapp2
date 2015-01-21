@@ -1,11 +1,11 @@
 <!-- 商品一覧TOP -->
-<!--<div class="container">-->
     <div class="row">
         <div class="col-sm-12">
             <h4>流れ</h4>
             <p>１：出品</p>
-            <p>２：コメント欄で交渉</p>
-            <p>３：商品受け渡し</p>
+            <p>２：コメント欄で話し合い</p>
+            <p>３：決定</p>
+            <p>４：受け渡し</p>
         </div>
 
         <div class="col-sm-2">
@@ -61,8 +61,8 @@
             <hr>                
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-6 thumbnail">
-                            <li style="text-align: center;">
+                    <div class="col-sm-6 thumbnail" style="height: 240px; width: 50%">
+                            <li style="text-align: center; height: 60px; overflow: hidden">
                             <strong>
                                 <?php
                                     echo $this->Html->link(
@@ -76,7 +76,7 @@
 ?>
                             </strong>
                             </li> 
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                             <li>
                                <?php
                                     echo $this->Upload->uploadImage($post['Post'],'Post.img',
@@ -89,18 +89,29 @@
                                 ?> 
                             </li>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
                             <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
                             <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
                             <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
                             <li>    
-                                <?php echo $this->Form->postLink(
-                                    '削除',
-                                    array('action' => 'delete', $post['Post']['id']),
-                                    array('confirm' => '削除してもよろしいですか？'));
+                                <?php
+                                    echo $this->Form->postLink(
+                                        '削除',
+                                        array('action' => 'delete', $post['Post']['id']),
+                                        array(
+                                            'confirm' => '削除してもよろしいですか？',
+                                            'class' => 'pull-right btn btn-danger'
+                                        )
+                                    );
                                 ?>
-                                <?php echo $this->Html->link('編集', array('action' => 'edit', $post['Post']['id'])); ?>
+                                <?php
+                                     echo $this->Html->link(
+                                         '編集', 
+                                         array('action' => 'edit', $post['Post']['id']),
+                                         array('class' => 'pull-right btn btn-success')
+                                     );
+                                ?>
                             </li>
                         </div>
                     </div>
@@ -161,4 +172,3 @@
             ?> 
         </div>
     </div>
-<!--</div>-->
