@@ -32,7 +32,16 @@
 </div>
 <?php echo $this->Form->file('img', array('label' => '画像')); ?>
 <div class="form-group">
-<?php echo $this->Form->input('price', array('label' => '価格', 'class' => 'form-control')); ?>
+<?php echo $this->Form->input('price', array('label' => '価格', 'class' => 'form-control')); ?>円
+</div>
+<div class="form-group"> 
+<?php 
+    echo $this->Form->input('place' array(
+        'placeholder' => '取引場所を入力してください',
+        'label' => '取引場所',
+        'class' => 'form-control'
+    ));
+ ?>
 </div>
 <?php
     echo $this->Form->submit('出品',

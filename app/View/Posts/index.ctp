@@ -35,7 +35,8 @@
                     array(
                         'controller' => 'posts',
                         'action' => 'index',
-                        'type' => 'post'
+                        'type' => 'post',
+                        'class' => 'form-group'
                     )
                 );
             ?>
@@ -91,7 +92,7 @@
             <hr>                
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%">
+                    <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%;">
                         <div class="row">
                             <div class="col-sm-12">
                                 <li>
@@ -113,23 +114,24 @@
                                          );
                                     ?>
                                 </li>
-                                <li class="divider-vertical"></li>
-                                <li style="text-align: center; height: 90px; overflow: hidden">
-                                    <h4>
-                                        <?php
-                                            echo $this->Html->link(
-                                                $post['Post']['title'],
-                                                    array(
-                                                        'controller' => 'posts',
-                                                        'action' => 'view',
-                                                        $post['Post']['id']
-                                                    )
-                                                );
-                                        ?>
-                                    </h4>
-                                </li> 
                             </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-12">
+                                <li style="text-align: center; width: 100%; height: 90px; text-overflow: ellipsis;">
+                                   <h4>
+                                       <?php
+                                           echo $this->Html->link(
+                                               $post['Post']['title'],
+                                                   array(
+                                                       'controller' => 'posts',
+                                                       'action' => 'view',
+                                                       $post['Post']['id']
+                                                   )
+                                               );
+                                       ?>
+                                   </h4>
+                               </li> 
+                            </div>
+                            <div class="col-sm-5">  
                                 <li>
                                    <?php
                                         echo $this->Upload->uploadImage($post['Post'],'Post.img',
@@ -142,13 +144,13 @@
                                     ?> 
                                 </li>
                             </div>
-                            <div class="col-sm-7" style="overflow: hidden">
+                            <div class="col-sm-7" style="width: 100%; height: 180px; text-overflow: ellipsis;">
                                 <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
                                 <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
-                                <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
+                                <li>価格：<?php echo h($post['Post']['price']); ?>円</li>
                                 <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
                                 <li>紹介文</li>
-                                <li style="overflow: hidden"><?php echo h($post['Post']['body']); ?></li> 
+                                <li style="text-overflow: ellipsis;"><?php echo h($post['Post']['body']); ?></li> 
                             </div>
                         </div>
                     </div>

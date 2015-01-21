@@ -8,7 +8,7 @@
         <div class="col-sm-7">
             <p>カテゴリー名：<?php echo h($post['Category']['name']); ?></p>
             <p>投稿者名：<?php echo h($post['User']['username']); ?></p>
-            <p>価格：¥<?php echo $post['Post']['price']; ?></p>
+            <p>価格：<?php echo $post['Post']['price']; ?>円</p>
             <p>最終更新日時：<?php echo $post['Post']['modified']; ?></p>
         </div>
 
