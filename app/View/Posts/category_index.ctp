@@ -2,26 +2,14 @@
     <h1>
         <?php echo $category['Category']['name']; ?>
         <div class="btn-group pull-right">
-            <?php 
-                echo $this->Paginator->sort('title', 'タイトル', array(
+            <?php
+                echo $this->Paginator->sort('price', '価格安い順', array(
                     'class' => 'btn btn-primary',
                     'role' => 'button'
                 ));
             ?>
             <?php
-                echo $this->Paginator->sort('name', '投稿者名', array(
-                    'class' => 'btn btn-primary',
-                    'role' => 'button'
-                ));
-            ?> 
-            <?php
-                echo $this->Paginator->sort('price', '価格', array(
-                    'class' => 'btn btn-primary',
-                    'role' => 'button'
-                ));
-            ?>
-            <?php
-                echo $this->Paginator->sort('modified', '最終更新日時', array(
+                echo $this->Paginator->sort('modified', '新着順', array(
                     'class' => 'btn btn-primary',
                     'role' => 'button'
                 ));
@@ -31,20 +19,22 @@
     <hr>
     <?php foreach($category['Post'] as $post): ?>
     <ul style="list-style: none;" class="thumbnails dist-inBlock">
-        <div class="col-sm-6 thumbnail" style="height: 240px width: 100%">
-            <li style="height: 60px; overflow: hidden">
-               <strong>
+        <div class="col-sm-12 thumbnail" style="text-align: center; height: 100%; width: 100%">
+            <div class="col-sm-12">
+            <li style="height: 90px; overflow: hidden">
+               <h2>
                   <?php 
                        echo $this->Html->link($post['title'],
                        array('controller' => 'posts', 'action' => 'view',$post['id'])
                        );
                    ?>
-                </strong>
+               </h2>
             </li>
-            <div class="col-sm-5">
+            </div>
+            <div class="col-sm-5" style="text-align: center;">
                 <li>
                     <?php echo $this->Upload->uploadImage($post, 'Post.img',
-                              array('style' => 'thumb'),
+                              array('style' => 'small'),
                               array('url' => array(
                                   'controller' => 'posts',
                                   'action' => 'view',
@@ -53,10 +43,12 @@
                     ?>
                  </li>
             </div>
-            <div class="col-sm-7"> 
-                <li>投稿者名：<?php echo $post['name']; ?></li>
-                <li>価格：¥<?php echo $post['price']; ?></li>
-                <li>最終更新日時：<?php echo $post['modified']; ?></li>
+            <div class="col-sm-7" style="text-align: left"> 
+                <li><h4>投稿者名：<?php echo $post['name']; ?></h4></li>
+                <li><h4>価格：¥<?php echo $post['price']; ?></h4></li>
+                <li><h4>最終更新日時：<?php echo $post['modified']; ?></h4></li>
+                <li><h4>紹介文</h4></li>
+                <li style="height: 50%; overflow: hidden;"><h4><?php echo $post['body']; ?></h4></li>
                 <li>
                     <?php
                         echo $this->Form->postLink(
@@ -75,7 +67,7 @@
                              array('class' => 'btn btn-success pull-right')
                         );
                     ?>
-               </li>
+                </li>
             </div>
         </div>
     </ul>
@@ -83,6 +75,7 @@
     <?php unset($post); ?>
     
     <br clear="all">
+    <hr>
     
     <div class="pagination" style="text-align: center">
         <?php

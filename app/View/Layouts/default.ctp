@@ -27,17 +27,8 @@
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
 
         // Twitter Bootstrap 3.0 CDN
-        echo $this->Html->css(
-            '//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css'
-       //     'bootstrap-theme.css',
-       //     'bootstrap-theme.css.map',
-       //     'bootstrap.css',
-       //     'bootstrap.min.css',
-       //     'bootstrap-theme.min.css',
-       //     'bootstrap.css.map'
-        );
+        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css');
         echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js');
-
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -54,10 +45,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">WebApp</a>
+                    <a class="navbar-brand" href="/02_cakephp/">WebApp</a>
                 </div>
                <!-- <div class="navbar-collapse">-->
-                    <ul class="nav navbar-nav navbar-righti navbar-collapse">
+                    <ul class="nav navbar-nav navbar-collapse pull-right">
                         <?php if($user): ?>
                             <li>
                                 <?php

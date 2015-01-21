@@ -65,7 +65,7 @@
             <?php 
                 echo $this->Html->link( $post['Category']['name'] . 'へ戻る', 
                     array('controller' => 'posts', 'action' => 'categoryIndex', $post['Category']['id']),
-                    array('class' => 'btn btn-primary pull-right')
+                    array('class' => 'btn btn-primary pull-left')
                 );
             ?>
             <?php 

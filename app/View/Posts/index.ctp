@@ -1,4 +1,5 @@
 <!-- 商品一覧TOP -->
+<div class="container">
     <div class="row">
         <div class="col-sm-12">
             <h4>流れ</h4>
@@ -8,7 +9,7 @@
             <p>４：受け渡し</p>
         </div>
 
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <h3>カテゴリー一覧</h3>
             <ul class="list-group">
             <?php foreach ($categories as $category): ?>
@@ -26,32 +27,61 @@
             <?php endforeach; ?>
             </ul>
             <?php unset($category); ?>
+            
+            <hr>
+
+            <?php
+                echo $this->Form->create('Post',
+                    array(
+                        'controller' => 'posts',
+                        'action' => 'index',
+                        'type' => 'post'
+                    )
+                );
+            ?>
+            <div class="input-group">
+                <?php
+                    echo $this->Form->input('search_word', array(
+                        'label' => false,
+                        'placeholder' => '文字を入力してください',
+                        'class' => 'form-control'
+                        ));
+                ?>
+                <span class="input-group-btn">
+                   <?php echo $this->Form->submit('検索', array('class' => 'btn btn-primary')); ?>
+                </span>
+            </div>
+            <?php echo $this->Form->end();?>
+
+            <hr>
+
+            <?php
+                echo $this->Html->link(
+                    '出品',
+                    array(
+                        'controller' => 'posts',
+                        'action' => 'add'
+                    ),
+                    array(
+                        'class' => 'btn btn-warning col-sm-12',
+                    )
+                );
+            ?>
         </div>
 
-        <div class="col-sm-8">
+        <div class="col-sm-9">
+        <div class="row">
             <h2>
                 商品一覧
                 <div class="btn-group pull-right">
                     <?php
-                        echo $this->Paginator->sort('Post.title', 'タイトル', array(
-                            'class' => 'btn btn-primary',
-                            'role' => 'button'
-                        )); 
-                    ?>
-                    <?php 
-                        echo $this->Paginator->sort('Post.name', '投稿者名', array(
-                            'class' => 'btn btn-primary',
-                            'role' => 'button'
-                        ));
-                     ?>
-                    <?php
-                        echo $this->Paginator->sort('Post.price', '価格', array(
+                        echo $this->Paginator->sort('Post.price', '価格安い順', array(
                             'class' => 'btn btn-primary',
                             'role' => 'button'
                         ));
                      ?>
                     <?php 
-                        echo $this->Paginator->sort('Post.modified', '最終更新日時', array(
+                        echo $this->Paginator->sort('Post.created', '新着順', array(
                             'class' => 'btn btn-primary',
                             'role' => 'button'
                         ));
@@ -61,21 +91,44 @@
             <hr>                
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-6 thumbnail" style="height: 240px; width: 50%">
-                            <li style="text-align: center; height: 60px; overflow: hidden">
-                            <strong>
+                    <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <li>
+                                <?php
+                                     echo $this->Form->postLink(
+                                         '削除',
+                                         array('action' => 'delete', $post['Post']['id']),
+                                         array(
+                                             'confirm' => '削除してもよろしいですか？',
+                                             'class' => 'btn btn-danger'
+                                         )
+                                     );
+                                ?>
                                 <?php
                                     echo $this->Html->link(
-                                        $post['Post']['title'],
-                                            array(
-                                                'controller' => 'posts',
-                                                'action' => 'view',
-                                                $post['Post']['id']
-                                            )
-                                        );
-?>
-                            </strong>
+                                       '編集',
+                                       array('action' => 'edit', $post['Post']['id']),
+                                       array('class' => ' btn btn-success')
+                                    );
+                                ?>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li style="text-align: center; height: 60px; overflow: hidden">
+                                <strong>
+                                    <?php
+                                        echo $this->Html->link(
+                                            $post['Post']['title'],
+                                                array(
+                                                    'controller' => 'posts',
+                                                    'action' => 'view',
+                                                    $post['Post']['id']
+                                                )
+                                            );
+                                    ?>
+                                </strong>
                             </li> 
+                        </div>
                         <div class="col-sm-5">
                             <li>
                                <?php
@@ -89,38 +142,23 @@
                                 ?> 
                             </li>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-7" style="overflow: hidden">
                             <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
                             <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
                             <li>価格：¥<?php echo h($post['Post']['price']); ?></li>
                             <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
-                            <li>    
-                                <?php
-                                    echo $this->Form->postLink(
-                                        '削除',
-                                        array('action' => 'delete', $post['Post']['id']),
-                                        array(
-                                            'confirm' => '削除してもよろしいですか？',
-                                            'class' => 'pull-right btn btn-danger'
-                                        )
-                                    );
-                                ?>
-                                <?php
-                                     echo $this->Html->link(
-                                         '編集', 
-                                         array('action' => 'edit', $post['Post']['id']),
-                                         array('class' => 'pull-right btn btn-success')
-                                     );
-                                ?>
-                            </li>
+                            <li>紹介文</li>
+                            <li style="overflow: hidden"><?php echo h($post['Post']['body']); ?></li> 
                         </div>
+                    </div>
                     </div>
                 </ul>
             <?php endforeach; ?>
             <?php unset($post); ?>
-
+            </div>
             <br clear="all">
-
+            <hr>
+            
             <div class="pagination" style="text-align: center">
             <?php 
                 echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
@@ -133,42 +171,5 @@
             ?>
             </div>
         </div>
-
-        <div class="col-sm-2">
-            <?php
-                echo $this->Form->create('Post',
-                    array(
-                        'controller' => 'posts',
-                        'action' => 'index',
-                        'type' => 'post'
-                    )
-                );
-            ?>
-            <div class="input-group">
-                <?php 
-                    echo $this->Form->input('search_word', array(
-                        'label' => false,
-                        'placeholder' => '文字を入力してください',
-                        'class' => 'form-control'
-                        ));
-                ?>
-                <span class="input-group-btn">
-                   <?php echo $this->Form->submit('検索', array('class' => 'btn btn-primary')); ?>
-                </span>
-            </div>
-            <?php echo $this->Form->end();?>
-            <hr>
-            <?php
-                echo $this->Html->link(
-                    '出品',
-                    array(
-                        'controller' => 'posts',
-                        'action' => 'add'
-                    ),
-                    array(
-                        'class' => 'btn btn-warning',
-                    )
-                );
-            ?> 
-        </div>
     </div>
+</div>
