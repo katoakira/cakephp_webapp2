@@ -20,21 +20,31 @@
                 echo $this->Form->create('Comment',array(
                     'class' => 'form-group'
                 ));
-                echo $this->Form->input('body', array(
-                    'label' => 'コメント',
-                    'placeholder' => 'コメントを入力してください',
-                    'class' => 'form-control'));
-                echo $this->Form->submit('送信', array(
-                    'class' => 'btn btn-primary'
-                ));
-                echo $this->Form->end();
             ?>
-            
+            <div class="input-group">
+                <?php
+                    echo $this->Form->input('body', array(
+                        'style' => 'height: 40px',
+                        'label' => false,
+                        'placeholder' => 'コメントを入力してください',
+                        'class' => 'form-control'));
+                ?>
+                <span class="input-group-btn">
+                <?php
+                    echo $this->Form->submit('送信', array(
+                        'class' => 'btn btn-primary'
+                    ));
+                ?>
+                </span>
+                </div>
+                <?php echo $this->Form->end(); ?>
+          
             <hr>
             
             <?php foreach($post['Comment'] as $comments): ?>
             <ul style="list-style: none;">
                 <li>
+                <?php if($user): ?>
                     <?php if($user['id'] == $comments['user_id']): ?>
                         <div class="popover left show" style="position: relative; max-width:100%;">
                         <div class="arrow"></div>
@@ -56,6 +66,8 @@
                             <p class="popover-content"><?php echo $comments['body']; ?></p>
                          </div>
                     <?php endif; ?>
+                <?php else: ?>
+                <?php endif; ?>   
                 </li>
             </ul>
             <?php endforeach; ?>

@@ -51,9 +51,8 @@
                 <span class="input-group-btn">
                    <?php echo $this->Form->submit('検索', array('class' => 'btn btn-primary')); ?>
                 </span>
-            </div>
             <?php echo $this->Form->end();?>
-
+            </div>
             <hr>
 
             <?php
@@ -92,7 +91,7 @@
             <hr>                
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-12 thumbnail" style="height: 360px; width: 50%; text-overflow: ellipsis">
+                    <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%; text-overflow: ellipsis">
                         <div class="row">
                             <div class="col-sm-12">
                                 <li>
@@ -115,7 +114,7 @@
                                     ?>
                                 </li>
                                 <li style="">
-                                   <h4 style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                   <h3 style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                        <?php
                                            echo $this->Html->link(
                                                $post['Post']['title'],
@@ -126,7 +125,7 @@
                                                    )
                                                );
                                        ?>
-                                   </h4>
+                                   </h3>
                                </li> 
                             </div>
                             <div class="col-sm-5">  
