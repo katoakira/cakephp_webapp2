@@ -19,7 +19,7 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-    <title>WebApplication</title>
+    <title>まーけっと</title>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -46,7 +46,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/02_cakephp/">WebApp</a>
+                    <a class="navbar-brand" href="/02_cakephp/">まーけっと</a>
                 </div>
                <!-- <div class="navbar-collapse collapse">-->
                     <ul class="nav navbar-nav navbar-collapse pull-right">
