@@ -2,13 +2,14 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-xs-12">
-            <h4>流れ</h4>
+            <h4 style="text-align: center">つかいかた</h4>
             <p>１：出品</p>
             <p>２：コメント欄で話し合い</p>
             <p>３：決定</p>
             <p>４：受け渡し</p>
+            <h5 style="text-align: center">いらなくなったもの、自分がまとめたノートなどを出品してみよう</h5>
+        <hr>
         </div>
-
         <div class="col-sm-3 col-xs-12">
             <h3>カテゴリー一覧</h3>
             <ul class="list-group">
@@ -70,9 +71,8 @@
         </div>
 
         <div class="col-sm-9 col-xs-12">
-        <div class="row">
             <h2>
-                商品一覧
+                一覧
                 <div class="btn-group pull-right">
                     <?php
                         echo $this->Paginator->sort('Post.price', '価格安い順', array(
@@ -165,21 +165,22 @@
                 </ul>
             <?php endforeach; ?>
             <?php unset($post); ?>
-            </div>
+           
             <br clear="all">
             <hr>
             
             <div class="pagination" style="text-align: center">
-            <?php 
-                echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
-                echo $this->Paginator->numbers(array('separator' => '')); 
-                echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
-            ?>
-            <?php
-                 echo $this->Paginator->counter(array('format' => '全%count%件' ));
-                 echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
-            ?>
+                <?php 
+                    echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
+                    echo $this->Paginator->numbers(array('separator' => '')); 
+                    echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
+                ?>
+                <?php
+                     echo $this->Paginator->counter(array('format' => '全%count%件' ));
+                     echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
+                ?>
             </div>
+        </div>
         </div>
     </div>
 </div>
