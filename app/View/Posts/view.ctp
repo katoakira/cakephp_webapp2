@@ -1,7 +1,11 @@
 <?php debug($post); debug($user); ?>
 <div class="container">
-<h1><?php echo h($post['Post']['title']); ?></h1>
-    <div class="row">
+<div class="row">
+<div class="col-sm-12">
+<h1 style="word-wrap: break-word;"><?php echo h($post['Post']['title']); ?></h1>
+</div>
+</div>
+<div class="row">
         <div class="col-sm-5">
             <p><?php echo $this->Upload->uploadImage($post['Post'], 'Post.img', array('style' => 'big')); ?></p>
         </div> 

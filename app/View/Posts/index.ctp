@@ -1,7 +1,7 @@
 <!-- 商品一覧TOP -->
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-xs-12">
             <h4>流れ</h4>
             <p>１：出品</p>
             <p>２：コメント欄で話し合い</p>
@@ -9,7 +9,7 @@
             <p>４：受け渡し</p>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-3 col-xs-12">
             <h3>カテゴリー一覧</h3>
             <ul class="list-group">
             <?php foreach ($categories as $category): ?>
@@ -63,13 +63,13 @@
                         'action' => 'add'
                     ),
                     array(
-                        'class' => 'btn btn-warning col-sm-12',
+                        'class' => 'btn btn-warning col-sm-12 col-xs-12',
                     )
                 );
             ?>
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-xs-12">
         <div class="row">
             <h2>
                 商品一覧
@@ -91,15 +91,15 @@
             <hr>                
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-6 thumbnail" style="height: 360px; width: 50%; text-overflow: ellipsis">
+                    <div class="col-sm-6 col-xs-12 thumbnail" style="height: 100%; width: 50%; text-overflow: ellipsis">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 col-xs-12">
                                 <li>
                                     <?php
                                         echo $this->Html->link(
                                            '編集',
                                            array('action' => 'edit', $post['Post']['id']),
-                                           array('class' => ' btn btn-success')
+                                           array('class' => ' btn btn-success pull-right')
                                         );
                                     ?>
                                     <?php
@@ -108,12 +108,12 @@
                                              array('action' => 'delete', $post['Post']['id']),
                                              array(
                                                  'confirm' => '削除してもよろしいですか？',
-                                                 'class' => 'btn btn-danger'
+                                                 'class' => 'btn btn-danger pull-right'
                                              )
                                          );
                                     ?>
                                 </li>
-                                <li style="">
+                                <li>
                                    <h3 style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                        <?php
                                            echo $this->Html->link(
@@ -128,7 +128,7 @@
                                    </h3>
                                </li> 
                             </div>
-                            <div class="col-sm-5">  
+                            <div class="col-sm-5 col-xs-5">  
                                 <li>
                                    <?php
                                         echo $this->Upload->uploadImage($post['Post'],'Post.img',
@@ -141,12 +141,22 @@
                                     ?> 
                                 </li>
                             </div>
-                            <div class="col-sm-7" style="">
-                                <li>投稿者名：<?php echo h($post['Post']['name']); ?></li>
-                                <li>カテゴリー：<?php echo h($post['Category']['name']); ?></li>
-                                <li>価格：<?php echo h($post['Post']['price']); ?>円</li>
-                                <li>取引場所：<?php echo h($post['Post']['place']); ?></li>
-                                <li>最終更新日時：<?php echo h($post['Post']['modified']); ?></li>
+                            <div class="col-sm-7 col-xs-7">
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                投稿者名：<?php echo h($post['Post']['name']); ?>
+                                </li>
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                カテゴリー：<?php echo h($post['Category']['name']); ?>
+                                </li>
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                価格：<?php echo h($post['Post']['price']); ?>円
+                                </li>
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                取引場所：<?php echo h($post['Post']['place']); ?>
+                                </li>
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                最終更新日時：<?php echo h($post['Post']['modified']); ?>
+                                </li>
                                 <li>紹介文</li>
                                 <li style="height: 100%; overflow: hidden; white-space: nowrap; width: 100%; text-overflow: ellipsis;"><?php echo h($post['Post']['body']); ?></li> 
                             </div>

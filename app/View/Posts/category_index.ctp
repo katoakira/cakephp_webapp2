@@ -19,7 +19,7 @@
     <hr>
     <?php foreach($category['Post'] as $post): ?>
     <ul style="list-style: none;" class="thumbnails dist-inBlock">
-        <div class="col-sm-12 thumbnail" style="text-align: left; height: 100%; width: 100%">
+        <div class="col-sm-12 thumbnail" style="text-align: left; height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
             <div class="col-sm-12">
             <li>
                 <?php
@@ -40,8 +40,8 @@
                     );
                 ?>
             </li>
-            <li style="height: 90px; overflow: hidden">               
-               <h2>
+            <li>               
+               <h2 style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                   <?php 
                        echo $this->Html->link($post['title'],
                        array('controller' => 'posts', 'action' => 'view',$post['id'])
@@ -68,7 +68,7 @@
                 <li><h4>取引場所：<?php echo $post['place']; ?></h4></li>
                 <li><h4>最終更新日時：<?php echo $post['modified']; ?></h4></li>
                 <li><h4>紹介文</h4></li>
-                <li style="height: 50%; overflow: hidden;"><h4><?php echo $post['body']; ?></h4></li>
+                <li style="height: 50%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;"><h4><?php echo $post['body']; ?></h4></li>
             </div>
         </div>
     </ul>
