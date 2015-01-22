@@ -41,13 +41,14 @@
            <nav class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/02_cakephp/">WebApp</a>
                 </div>
-               <!-- <div class="navbar-collapse">-->
+               <!-- <div class="navbar-collapse collapse">-->
                     <ul class="nav navbar-nav navbar-collapse pull-right">
                         <?php if($user): ?>
                             <li>
@@ -57,7 +58,6 @@
                                       );
                                  ?>
                             </li>
-                            <li class="divider-vertical"></li>
                             <li>
                                 <a href="#"><?php echo sprintf("ようこそ %s さん", $user['username']); ?></a>
                             </li>
@@ -69,7 +69,6 @@
                                     );
                                  ?>
                             </li>
-                            <li class="divider-vertical"></li>
                             <li>
                                 <?php
                                     echo $this->Html->link('新規登録', 
@@ -79,7 +78,7 @@
                             </li>
                         <?php endif; ?>
                     </ul>     
-               <!-- </div> -->
+                <!--</div>-->
             </nav> 
         </div>
 
