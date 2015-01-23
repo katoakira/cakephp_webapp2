@@ -5,8 +5,8 @@
             <h4 style="text-align: center">つかいかた</h4>
             <p>１：出品</p>
             <p>２：コメント欄で話し合い</p>
-            <p>３：決定</p>
-            <p>４：受け渡し</p>
+            <p>３：成立</p>
+            <p>４：「取引場所」で受け渡し</p>
             <h5 style="text-align: center">いらなくなったもの、自分がまとめたノートなどを出品してみよう</h5>
         <hr>
         </div>
@@ -92,7 +92,7 @@
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock">
                     <div class="col-sm-6 col-xs-12 thumbnail" style="height: 100%; width: 50%; text-overflow: ellipsis">
-                        <div class="row">
+                        <!--<div class="row">-->
                             <div class="col-sm-12 col-xs-12">
                                 <li>
                                     <?php
@@ -126,7 +126,7 @@
                                                );
                                        ?>
                                    </h3>
-                               </li> 
+                                </li> 
                             </div>
                             <div class="col-sm-5 col-xs-5">  
                                 <li>
@@ -160,7 +160,7 @@
                                 <li>紹介文</li>
                                 <li style="height: 100%; overflow: hidden; white-space: nowrap; width: 100%; text-overflow: ellipsis;"><?php echo h($post['Post']['body']); ?></li> 
                             </div>
-                        </div>
+                        <!--</div>-->
                     </div>
                 </ul>
             <?php endforeach; ?>
@@ -169,12 +169,13 @@
             <br clear="all">
             <hr>
             
-            <div class="pagination" style="text-align: center">
+            <div class="pagination" style="">
                 <?php 
-                    echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
+                        echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
                     echo $this->Paginator->numbers(array('separator' => '')); 
                     echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
                 ?>
+                <br>
                 <?php
                      echo $this->Paginator->counter(array('format' => '全%count%件' ));
                      echo $this->Paginator->counter(array('format' => '{:page}/{:pages}ページを表示'));
