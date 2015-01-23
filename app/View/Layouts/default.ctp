@@ -38,7 +38,7 @@
 <body style="padding-top: 70px;">
 	<div id="container">
 		<div id="header">
-           <nav class="navbar navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-fixed-top" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only"></span>

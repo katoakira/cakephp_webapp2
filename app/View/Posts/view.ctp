@@ -1,4 +1,3 @@
-<?php debug($post); debug($user); ?>
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
