@@ -90,7 +90,7 @@
             </h2>
             <hr>                
             <?php foreach ($posts as $post): ?>
-                <ul style="list-style: none;" class="thumbnails disp-inBlock col-sm-6">
+                <ul style="list-style: none;" class="thumbnails disp-inBlock col-sm-12">
                     <div class="col-sm-12 thumbnail" style="height: 100%; width: 100%; text-overflow: ellipsis">
                             <div class="col-sm-12 col-xs-12">
                                 <li>
@@ -128,7 +128,7 @@
                                 </li> 
                             </div>
                             <div class="col-sm-5 col-xs-12">  
-                                <li>
+                                <li style="height: 100%; width: 100%; text-overflow: ellipsis">
                                    <?php
                                         echo $this->Upload->uploadImage($post['Post'],'Post.img',
                                             array('style' => 'thumb'),
@@ -144,7 +144,7 @@
                                 <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                 投稿者名：<?php echo h($post['Post']['name']); ?>
                                 </li>
-                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ; white-space: ;">
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                 カテゴリー：<?php echo h($post['Category']['name']); ?>
                                 </li>
                                 <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
