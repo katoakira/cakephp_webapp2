@@ -1,6 +1,6 @@
 <!-- 商品一覧TOP -->
-<div class="container">
-    <div class="row">
+<!--<div class="container">-->
+   <!-- <div class="row">-->
         <div class="col-sm-12 col-xs-12">
             <h4 style="text-align: center">つかいかた</h4>
             <p>１：出品</p>
@@ -90,9 +90,8 @@
             </h2>
             <hr>                
             <?php foreach ($posts as $post): ?>
-                <ul style="list-style: none;" class="thumbnails disp-inBlock">
-                    <div class="col-sm-6 col-xs-12 thumbnail" style="height: 100%; width: 50%; text-overflow: ellipsis">
-                        <!--<div class="row">-->
+                <ul style="list-style: none;" class="thumbnails disp-inBlock col-sm-6">
+                    <div class="col-sm-12 thumbnail" style="height: 100%; width: 100%; text-overflow: ellipsis">
                             <div class="col-sm-12 col-xs-12">
                                 <li>
                                     <?php
@@ -128,7 +127,7 @@
                                    </h3>
                                 </li> 
                             </div>
-                            <div class="col-sm-5 col-xs-5">  
+                            <div class="col-sm-5 col-xs-12">  
                                 <li>
                                    <?php
                                         echo $this->Upload->uploadImage($post['Post'],'Post.img',
@@ -141,11 +140,11 @@
                                     ?> 
                                 </li>
                             </div>
-                            <div class="col-sm-7 col-xs-7">
+                            <div class="col-sm-7 col-xs-12">
                                 <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                 投稿者名：<?php echo h($post['Post']['name']); ?>
                                 </li>
-                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+                                <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ; white-space: ;">
                                 カテゴリー：<?php echo h($post['Category']['name']); ?>
                                 </li>
                                 <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
@@ -160,7 +159,6 @@
                                 <li>紹介文</li>
                                 <li style="height: 100%; overflow: hidden; white-space: nowrap; width: 100%; text-overflow: ellipsis;"><?php echo h($post['Post']['body']); ?></li> 
                             </div>
-                        <!--</div>-->
                     </div>
                 </ul>
             <?php endforeach; ?>
@@ -183,5 +181,5 @@
             </div>
         </div>
         </div>
-    </div>
-</div>
+    <!--</div>-->
+<!--</div>-->
