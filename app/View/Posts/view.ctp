@@ -1,14 +1,14 @@
 <div class="container">
-<div class="row">
-<div class="col-sm-12">
-<h1 style="word-wrap: break-word;"><?php echo h($post['Post']['title']); ?></h1>
-</div>
-</div>
-<div class="row">
-        <div class="col-sm-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 style="word-wrap: break-word;"><?php echo h($post['Post']['title']); ?></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7">
             <p><?php echo $this->Upload->uploadImage($post['Post'], 'Post.img', array('style' => 'big')); ?></p>
         </div> 
-        <div class="col-sm-7">
+        <div class="col-sm-5">
             <p>カテゴリー名：<?php echo h($post['Category']['name']); ?></p>
             <p>投稿者名：<?php echo h($post['User']['username']); ?></p>
             <p>価格：<?php echo $post['Post']['price']; ?>円</p>
@@ -90,4 +90,5 @@
                 );
             ?>
         </div>
+    </div>
 </div>

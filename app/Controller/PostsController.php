@@ -175,4 +175,5 @@ class PostsController extends AppController {
             return $this->redirect(array('controller' => 'posts','action' => 'index'));
         }
     }
+
 } 

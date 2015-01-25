@@ -29,6 +29,12 @@
                     )
                 );
             ?>
+            <?php
+           //     echo $this->Html->link('パスワードを忘れてしまった方へ', array( 
+           //         'controller' => 'users',
+           //         'action' => 'resetPwd')
+           //     )
+            ?>
     </fieldset>
     <?php echo $this->Form->submit('ログイン', array('class' => 'btn btn-primary pull-left')); ?>              
     <?php

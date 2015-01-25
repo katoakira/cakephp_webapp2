@@ -1,7 +1,7 @@
 <!-- 商品一覧TOP -->
 <!--<div class="container">-->
    <!-- <div class="row">-->
-        <div class="col-sm-12 col-xs-12">
+        <div class="col-sm-12 col-md-12">
             <h4 style="text-align: center">つかいかた</h4>
             <p>１：出品</p>
             <p>２：コメント欄で話し合い</p>
@@ -10,7 +10,7 @@
             <h5 style="text-align: center">いらなくなったもの、自分がまとめたノートなどを出品してみよう</h5>
         <hr>
         </div>
-        <div class="col-sm-3 col-xs-12">
+        <div class="col-sm-3 col-md-12">
             <h3>カテゴリー一覧</h3>
             <ul class="list-group">
             <?php foreach ($categories as $category): ?>
@@ -54,6 +54,7 @@
                 </span>
             <?php echo $this->Form->end();?>
             </div>
+
             <hr>
 
             <?php
@@ -64,13 +65,14 @@
                         'action' => 'add'
                     ),
                     array(
-                        'class' => 'btn btn-warning col-sm-12 col-xs-12',
+                        'class' => 'btn btn-warning col-sm-12 col-md-12',
+                        'style' => 'width: 100%'
                     )
                 );
             ?>
         </div>
 
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-9 col-md-12">
             <h2>
                 一覧
                 <div class="btn-group pull-right">
@@ -92,7 +94,7 @@
             <?php foreach ($posts as $post): ?>
                 <ul style="list-style: none;" class="thumbnails disp-inBlock col-sm-12">
                     <div class="col-sm-12 thumbnail" style="height: 100%; width: 100%; text-overflow: ellipsis">
-                            <div class="col-sm-12 col-xs-12">
+                            <div class="col-sm-12 col-md-12">
                                 <li>
                                     <?php
                                         echo $this->Html->link(
@@ -127,7 +129,7 @@
                                    </h3>
                                 </li> 
                             </div>
-                            <div class="col-sm-5 col-xs-12">  
+                            <div class="col-sm-5 col-md-12">  
                                 <li style="height: 100%; width: 100%; text-overflow: ellipsis">
                                    <?php
                                         echo $this->Upload->uploadImage($post['Post'],'Post.img',
@@ -140,7 +142,7 @@
                                     ?> 
                                 </li>
                             </div>
-                            <div class="col-sm-7 col-xs-12">
+                            <div class="col-sm-7 col-md-12">
                                 <li style="height: 100%; overflow: hidden; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
                                 投稿者名：<?php echo h($post['Post']['name']); ?>
                                 </li>
